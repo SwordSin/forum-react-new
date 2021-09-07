@@ -8,17 +8,19 @@ const CardStyle = styled.div`
     // float: left;
     padding: 5px;
 `
+interface StyleType {
+    [attr:string]: string;
+}
 
 interface CardProps {
     component: React.FunctionComponent,
-    style?: any;
+    style?: StyleType;
 }
 
 const Card = function(prop:CardProps) {
-    const Component:React.FunctionComponent = prop.component
     return (
         <CardStyle style={prop.style}>
-            <Component></Component>
+            <prop.component></prop.component>
         </CardStyle>
     )
 }
