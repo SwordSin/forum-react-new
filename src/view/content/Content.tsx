@@ -1,14 +1,25 @@
 import Card from '@/component/card/Card'
+import Tablist from '@/view/tablist/Tablist'
+import Titlelist from '@/view/titlelist/Titlelist'
+const ContentStyle = require('./Content.module.scss')
 
-const box = function() {
-    return (
-        <div>这是一个内容</div>
-    )
+const tablistStyle = {
+    flex: '1 80%'
+}
+const titlelistStyle = {
+    flex: '1 80%',
+    marginTop: '30px'
+    // marginLeft: '30px'
 }
 
 const Content = function() {
     return (
-        <Card component={box}></Card>
+        <div className={ContentStyle.content}>
+            <div>
+                <Card component={Tablist} style={tablistStyle}></Card>
+                <Card component={Titlelist} style={titlelistStyle}></Card>
+            </div>
+        </div>
     )
 }
 

@@ -1,0 +1,21 @@
+.topicLink {
+    font-size: 16px;
+    line-height: 130%;
+    text-shadow: 0 1px 0 #fff;
+    word-break: break-word;
+    hyphens: auto;
+}
+.topicLink:active, .topicLink:link {
+    color: #778087;
+    text-decoration: none;
+    word-break: break-word;
+}
+.topicLink:active, .topicLink:link, .topicLink:visited {
+    color: #778087;
+    text-decoration: none;
+    word-break: break-word;
+}
+.topicLink:hover {
+    color: #4d5256;
+    text-decoration: underline;
+}

@@ -1,6 +1,6 @@
 const HeaderStyle  = require('./Header.module.scss')
 
-import Input from '@/component/input/Input'
+import Input from '@/component/input/InputSearch'
 
 const LoginStyle = {
     marginLeft: '20px'

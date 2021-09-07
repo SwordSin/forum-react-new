@@ -1,0 +1,14 @@
+.tablist {
+    > ul {
+        list-style: none;
+        > li {
+            float: left;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        >li:hover {
+            cursor: pointer;
+            background-color: var(--box-background-hover-color);
+        }
+    }
+}

@@ -1,0 +1,11 @@
+.content {
+    background-color: var(--box-border-color);
+    padding-top: 1px;
+    padding-bottom: 1px;
+    > div {
+        display: flex;
+        max-width: var(--content-width);
+        margin: 20px auto;
+        flex-wrap:wrap; 
+    }
+}
