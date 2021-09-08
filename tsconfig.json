@@ -19,11 +19,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "typeRoots": ["./node_modules/@types/", "src/typings"],
   },
   "extends": "./paths.json",
-  "include": [
-    "src"
-  ],
+  "include": [ "src", "src/typings"  ],
   "exclude": ["src/test"]
 }
