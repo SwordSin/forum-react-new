@@ -4,6 +4,8 @@
     text-shadow: 0 1px 0 #fff;
     word-break: break-word;
     hyphens: auto;
+    display: block;
+    margin-left: 5px;
 }
 .topicLink:active, .topicLink:link {
     color: #778087;

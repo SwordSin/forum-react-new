@@ -24,5 +24,6 @@
   "extends": "./paths.json",
   "include": [
     "src"
-  ]
+  ],
+  "exclude": ["src/test"]
 }

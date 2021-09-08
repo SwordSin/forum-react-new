@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "experimentalDecorators": true,        // 启用装饰器
+      "emitDecoratorMetadata": true,
+      "module": "esnext"
+    },
+    "include": [
+      "./"
+    ]
+  }
+  

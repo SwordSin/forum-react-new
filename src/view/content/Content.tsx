@@ -8,8 +8,8 @@ const tablistStyle = {
 }
 const titlelistStyle = {
     flex: '1 80%',
-    marginTop: '30px'
-    // marginLeft: '30px'
+    marginTop: '30px',
+    paddingLeft: '0px'
 }
 
 const Content = function() {
