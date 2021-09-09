@@ -18,8 +18,9 @@ const Path = function(props:PathData) {
                     if (index === props.pathlist.length - 1) {
                         name = value
                     }
+                    const path = '/' + props.pathlist.slice(0, index + 1).join('/')
                     return (
-                        <Topic name={name} key={index.toString() + 'path'} style={topicStyle}></Topic>
+                        <Topic name={name} key={index.toString() + 'path'} style={topicStyle} path={path.replace(/\/首页/, '/content')}></Topic>
                     )
                 })
             }

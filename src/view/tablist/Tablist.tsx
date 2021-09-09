@@ -3,6 +3,7 @@ const TablistStyle = require('./Tablist.module.scss')
 
 import Button from '@/component/button/Button'
 import { InlintStyleType } from '@/shims'
+import { useLocation } from 'react-router-dom'
 
 import Path from '@/view/path/Path'
 
@@ -18,6 +19,10 @@ const PathBoxStyle:InlintStyleType = {
 
 
 const TabList = function() {
+    const location = useLocation()
+    const tmpArray = location.pathname.split('/')
+    tmpArray.shift()
+    tmpArray[0] = '首页'
     return (
         <div>
             <div className={TablistStyle.tablist} style={TablistBoxStyle}>
@@ -27,7 +32,7 @@ const TabList = function() {
                 <Button name="板块4" path="/content/板块4"></Button>
             </div>
             <div style={PathBoxStyle}>
-                <Path pathlist={['首页', '内容', 'abcs']}></Path>
+                <Path pathlist={tmpArray}></Path>
             </div>
         </div>
     )
