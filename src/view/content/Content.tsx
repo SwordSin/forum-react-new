@@ -15,6 +15,12 @@ const titlelistStyle: InlintStyleType = {
     paddingLeft: '0px'
 }
 
+const titleContentStyle: InlintStyleType = {
+    flex: '1 80%',
+    marginTop: '30px',
+    paddingLeft: '0px'
+}
+
 const Content = function() {
     const math = useRouteMatch()
     return (
@@ -22,7 +28,7 @@ const Content = function() {
             <div>
                 <Card component={Tablist} style={tablistStyle}></Card>
                 <Route path={math.url + '/:titleType'} exact render={() => <Card component={Titlelist} style={titlelistStyle}></Card>} />
-                <Route path={math.url + '/:titleType' +  '/:titleId'} exact render={() => <TitleContent ></TitleContent>} />
+                <Route path={math.url + '/:titleType' +  '/:titleId'} exact render={() => <Card component={TitleContent} style={titleContentStyle}></Card>} />
             </div>
         </div>
     )
