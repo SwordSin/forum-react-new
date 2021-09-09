@@ -1,10 +1,26 @@
-import { tabListData } from '@/data/MyData'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import Header from '@/view/header/Header'
+import Login from '@/view/login/Loing'
+import NotFound from '@/component/404'
+
 function App() {
+  // 配置路由守卫
+  // 获取cookie
+  // const cookie = document.cookie
+  // // debugger
+  // if (!cookie && location.pathname !== '/login') {
+  //   location.pathname = '/login'
+  // }
   return (
-    <div className="App">
-      <h1>这是住路径</h1>
-      {tabListData}
-    </div>
+    <Router>
+      <Switch>
+        <Redirect from="/" exact to="/content" />
+        <Route component={ Header } path="/content"></Route>
+        <Route component={ Login } path="/login"></Route>
+        <Route component={ NotFound } path="/404"></Route>
+        <Redirect to="/404" />
+      </Switch>
+    </Router>
   )
 }
 

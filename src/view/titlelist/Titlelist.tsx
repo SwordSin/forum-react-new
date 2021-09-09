@@ -10,8 +10,8 @@ const TitlelistStyle = styled.div`
 const Titlelist = function() {
     return (
         <TitlelistStyle>
-            <Title></Title>
-            <Title></Title>
+            <Title name="标题1" titleType="标题类型1"></Title>
+            <Title name="标题2" titleType="标题类型1"></Title>
             {/* <Title></Title> */}
         </TitlelistStyle>
     )

@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import Button from '@/component/button/Button'
 import Topic from '@/component/topic/Topic'
+import { useRouteMatch } from 'react-router-dom'
 
 const TitleDiv = styled.div`
     width: 100%;
@@ -42,13 +43,19 @@ const buttonStyle = {
     marginTop: '3px'
 }
 
-const Title = function() {
+interface propsType {
+    name: string;
+    titleType: string;
+}
+
+const Title = function(props:propsType) {
+    const math = useRouteMatch()
     return (
         <TitleDiv>
             <ImgStyle src={require('./touxiang.png').default} alt="" />
             <DivStyle>
-                <Topic name="表体内容"></Topic>
-                <Button name="标题类型" style={buttonStyle}></Button>
+                <Topic name={props.name} path={`${math.url}/${props.name}`}></Topic>
+                <Button name={props.titleType} style={buttonStyle}></Button>
                 <SpanStyleOne>
                     &nbsp;•&nbsp; 
                 </SpanStyleOne>

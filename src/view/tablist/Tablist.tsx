@@ -21,10 +21,10 @@ const TabList = function() {
     return (
         <div>
             <div className={TablistStyle.tablist} style={TablistBoxStyle}>
-                <Button name="板块1"></Button>
-                <Button name="板块2"></Button>
-                <Button name="板块3"></Button>
-                <Button name="板块4"></Button>
+                <Button name="板块1" path="/content/板块1"></Button>
+                <Button name="板块2" path="/content/板块2"></Button>
+                <Button name="板块3" path="/content/板块3"></Button>
+                <Button name="板块4" path="/content/板块4"></Button>
             </div>
             <div style={PathBoxStyle}>
                 <Path pathlist={['首页', '内容', 'abcs']}></Path>
