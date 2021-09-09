@@ -20,9 +20,17 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "suppressImplicitAnyIndexErrors": true,
-    "typeRoots": ["./node_modules/@types/", "src/typings"],
+    "typeRoots": [
+      "./node_modules/@types/",
+      "src/typings"
+    ]
   },
   "extends": "./paths.json",
-  "include": [ "src", "src/typings"  ],
-  "exclude": ["src/test"]
+  "include": [
+    "src",
+    "src/typings"
+  ],
+  "exclude": [
+    "src/test"
+  ]
 }

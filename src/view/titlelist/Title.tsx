@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import Button from '@/component/button/Button'
-const TitleStyle = require('./Title.module.scss')
+import Topic from '@/component/topic/Topic'
 
 const TitleDiv = styled.div`
     width: 100%;
@@ -47,7 +47,7 @@ const Title = function() {
         <TitleDiv>
             <ImgStyle src={require('./touxiang.png').default} alt="" />
             <DivStyle>
-                <a href="#" className={TitleStyle.topicLink}>这是标题内容</a>
+                <Topic name="表体内容"></Topic>
                 <Button name="标题类型" style={buttonStyle}></Button>
                 <SpanStyleOne>
                     &nbsp;•&nbsp; 
