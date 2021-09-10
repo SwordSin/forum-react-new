@@ -1,0 +1,15 @@
+.track {
+    margin-top: 20px;
+    >div {
+        float: left;
+        width: 33.3%;
+        >div {
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+        >div:hover {
+            color: var(--box-border-focus-color);
+        }
+    }
+}

@@ -3,17 +3,13 @@ import { InlintStyleType } from '@/shims'
 import Input from '@/component/input/InputSearch'
 import Content from '@/view/content/Content'
 
-const LoginStyle:InlintStyleType = {
-    marginLeft: '10px'
-}
-
 const SearchBoxStyle:InlintStyleType = {
     marginTop: '10px',
     lineHeight: '0px'
 }
 
-const UserNameStyle = {
-    
+const UserNameStyle:InlintStyleType = {
+    float: 'right'   
 }
 
 const Header = function() {
@@ -25,8 +21,10 @@ const Header = function() {
                     <div className={HeaderStyle.search} style={SearchBoxStyle}>
                         <Input></Input>
                     </div>
-                    <div style={{...LoginStyle, marginLeft: '60%'}}>用户名</div>
-                    <div style={LoginStyle}>记事本</div>
+                    <div style={UserNameStyle} className={HeaderStyle.userlist}>我们的愿景</div>
+                    <div style={UserNameStyle} className={HeaderStyle.userlist}>设置</div>
+                    <div style={UserNameStyle} className={HeaderStyle.userlist}>记事本</div>
+                    <div style={UserNameStyle} className={HeaderStyle.userlist}>用户名</div>
                 </div>
             </div>
             <Content></Content>
