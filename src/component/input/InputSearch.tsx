@@ -10,7 +10,7 @@ import { InlintStyleType } from '@/shims'
 //     padding: '1px',
 //     border: '0',
 //     fontFamily: 'helvetica neue,luxi sans,Tahoma,hiragino sans gb,STHeiti,sans-serif',
-//     backgroundColor: 'transparent'
+//     backgroundColor: 'transparenasdfasdt'
 // }
 
 
