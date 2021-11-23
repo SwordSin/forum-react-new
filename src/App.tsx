@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Header from '@/view/header/Header'
 import Login from '@/view/login/Loing'
+import Register from '@/view/login/Register'
 import NotFound from '@/component/404'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Redirect from="/" exact to="/content" />
         <Route component={ Header } path="/content"></Route>
         <Route component={ Login } path="/login"></Route>
+        <Route component={ Register } path="/register"></Route>
         <Route component={ NotFound } path="/404"></Route>
         <Redirect to="/404" />
       </Switch>

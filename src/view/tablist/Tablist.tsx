@@ -26,10 +26,11 @@ const TabList = function() {
     return (
         <div>
             <div className={TablistStyle.tablist} style={TablistBoxStyle}>
-                <Button name="板块1" path="/content/板块1"></Button>
-                <Button name="板块2" path="/content/板块2"></Button>
-                <Button name="板块3" path="/content/板块3"></Button>
-                <Button name="板块4" path="/content/板块4"></Button>
+                {
+                    ['板块1', '板块2', '板块3', '板块4'].map((val, index) => (<Button 
+                        key={val + index.toString()}
+                        name={val} path={'/content/' + val}></Button>))
+                }
             </div>
             <div style={PathBoxStyle}>
                 <Path pathlist={tmpArray}></Path>
