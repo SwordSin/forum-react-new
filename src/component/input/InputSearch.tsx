@@ -20,6 +20,7 @@ const InputStyle = styled.input`
     font-size: 16px;
     line-height: 16px;
     padding: 1px;
+    padding-bottom: 2px;
     border: none;
     outline: none;
     background-color: transparent;

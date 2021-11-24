@@ -1,50 +1,46 @@
-import { useState } from "react"
 import { InlintStyleType } from '@/shims'
+import Input from '@/component/input/Input'
+import Button from '@/component/button/Button'
+
+interface RegisterItemPropsType {
+  name: string;
+}
+
+// 整体元素居中
+const divStyle:InlintStyleType = {
+  paddingLeft: '35%',
+  marginTop: '5%'
+}
+const titleStyle:InlintStyleType = {
+  marginBottom: '50px',
+  position: 'relative',
+  left: '-60px'
+}
+
+// 注册元素
+const RegisterItem = function(props:RegisterItemPropsType) {
+  return (
+    <div style={{display: 'flex', width: '300px', marginBottom: '5px'}}>
+      <div style={{flex: '2'}}>
+        {props.name}
+      </div>
+      <Input style={{flex: '5'}}></Input>
+    </div>
+  )
+}
 
 function Register() {
 
-  // state
-  const registerInfo:InlintStyleType =  {
-    'username': '',
-    'password': '',
-    'netName': '',
-    'email': '',
-    'phone': ''
-  }
-  const [formData, setFormData] = useState(registerInfo)
-
-  const changeInput = function (e: any) {
-    // debugger
-    // debugger
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
-
-  // 渲染表单列表
-  const FormList = [['username', '用户名'], ['password', '密码'], ['netName', '昵称'], ['email', '邮箱'], ['phone', '电话']].map((value, index) => {
-    // let usetype = 'text'
-    // if (value[0] === 'password') {
-    //   usetype = 'password'
-    // } else if (value[0] === 'phone') {
-    //   usetype = 'number'
-    // }
-    return (
-      <div key={index.toString()}>
-        <input value={formData[value[0]]} name={ value[0] } onChange={changeInput} />
-      </div>
-    )
-  }
-  )
-
-  // 提交内容
-  const addUser = function () {
-      console.log('提交注册内容')
-  }
-
   return (
-    <div>
-      <h3>欢迎sdafasdfsdafas加入</h3>
-      {FormList}
-      <button onClick={ addUser }>提交</button>
+    <div style={divStyle}>
+      <h3 style={titleStyle}>欢迎来到 V2EX，这里是创意工作者的数字化公共空间。</h3>
+      <RegisterItem name="用户名"></RegisterItem>
+      <RegisterItem name="email"></RegisterItem>
+      <RegisterItem name="密码"></RegisterItem>
+      <RegisterItem name="确认密码"></RegisterItem>
+
+      <Button name="清除"></Button>
+      <Button name="注册"></Button>
     </div>
   )
 }

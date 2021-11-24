@@ -1,7 +1,7 @@
 const TablistStyle = require('./Tablist.module.scss')
 // import {InlineStyleType} from '@/typings/shims'
 
-import Button from '@/component/button/Button'
+import Tab from '@/component/button/Tab'
 import { InlintStyleType } from '@/shims'
 import { useLocation } from 'react-router-dom'
 
@@ -27,9 +27,9 @@ const TabList = function() {
         <div>
             <div className={TablistStyle.tablist} style={TablistBoxStyle}>
                 {
-                    ['板块1', '板块2', '板块3', '板块4'].map((val, index) => (<Button 
+                    ['板块1', '板块2', '板块3', '板块4'].map((val, index) => (<Tab 
                         key={val + index.toString()}
-                        name={val} path={'/content/' + val}></Button>))
+                        name={val} path={'/content/' + val}></Tab>))
                 }
             </div>
             <div style={PathBoxStyle}>

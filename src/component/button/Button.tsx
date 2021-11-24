@@ -1,24 +1,11 @@
-const MybuttonStyle = require('./Button.module.scss')
-import { useHistory } from 'react-router-dom'
+const MyButtonStyle = require('./Tab.module.scss')
+import { PropsType } from "@/shims"
 
-interface ButtonContent{
-    name: string;
-    style?: {[key:string]: string};
-    path?: string;
-}
 
-const Button = function(props: ButtonContent) {
-    const history = useHistory()
-    const getPath = () => {
-        history.push({
-            pathname: props.path
-        })
-    }
-
+const Button = function(props : PropsType = {name: '这是按钮'}) {
     return (
-        <div className={MybuttonStyle.mybutton} style={props.style} onClick={getPath}>{props.name}</div>
+        <input className={MyButtonStyle.mybutton} type="button" value={props.name} />
     )
 }
-
 
 export default Button

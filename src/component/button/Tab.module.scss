@@ -1,10 +1,17 @@
-.mybutton {
+.mytab {
     float: left;
     padding: 5px;
     border-radius: 5px;
 }
-.mybutton:hover {
+.mytab:hover {
     cursor: pointer;
     background-color: #e2e2e2;
     color: #777;
+}
+
+.mybutton {
+    padding: 3px 5px;
+}
+.mybutton:hover {
+    cursor: pointer;
 }

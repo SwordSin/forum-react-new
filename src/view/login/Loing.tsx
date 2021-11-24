@@ -1,7 +1,12 @@
+// import Input from '@/component/input/Input'
+
 const Login = function() {
     return (
         <div>
-            <h1>这是登录界面</h1>
+            <h1>login</h1>
+            {/* <Input></Input>
+            <Input></Input>
+            <Input></Input> */}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Button from '@/component/button/Button'
+import Tab from '@/component/button/Tab'
 import Topic from '@/component/topic/Topic'
 import { useRouteMatch } from 'react-router-dom'
 
@@ -36,7 +36,7 @@ const SpanStyleTwo = styled.span`
     line-height: 31px;
 `
 
-const buttonStyle = {
+const tabStyle = {
     backgroundColor: '#f5f5f5',
     color: 'var(--color-gray)',
     padding: '3px',
@@ -55,7 +55,7 @@ const Title = function(props:propsType) {
             <ImgStyle src={require('./touxiang.png').default} alt="" />
             <DivStyle>
                 <Topic name={props.name} path={`${math.url}/${props.name}`}></Topic>
-                <Button name={props.titleType} style={buttonStyle}></Button>
+                <Tab name={props.titleType} style={tabStyle}></Tab>
                 <SpanStyleOne>
                     &nbsp;•&nbsp; 
                 </SpanStyleOne>
