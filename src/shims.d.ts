@@ -7,3 +7,7 @@ export interface InlintStyleType {
 export interface PropsType {
     [key:string]: string|number;
 }
+
+export interface InputCallBackType {
+    (name:string, value:string): void
+}

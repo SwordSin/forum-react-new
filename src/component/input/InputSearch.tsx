@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from 'styled-components'
 // import { InlintStyleType } from '@/shims'
 
@@ -45,9 +46,14 @@ const InputStyle = styled.input`
 // }
 
 const Input = function() {
+
+    const [value, setValue] = useState('')
+
     return (
         <div>
-            <InputStyle type="text"></InputStyle>
+            <InputStyle type="text" value={value} onChange={e => {
+                setValue(e.target.value)
+            }}></InputStyle>
             {/* <SearchBox>
                 <div style={boxStyle}>
                     <h3>内容1</h3>
