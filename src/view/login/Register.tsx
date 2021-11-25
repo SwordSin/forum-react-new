@@ -37,11 +37,15 @@ const RegisterItem = function(props:RegisterItemPropsType) {
 const registerItemList = [
   {
     label: '用户名',
-    name: 'user'
+    name: 'username'
   },
   {
     label: 'email',
     name: 'email'
+  },
+  {
+    label: '昵称',
+    name: 'netName'
   },
   {
     label: '密码',
@@ -62,8 +66,9 @@ const registerClick = function(value:any) {
 
 function Register() {
   const [registerItemValue, setRegisterItemValue] = useState({
-    user: '',
+    username: '',
     email: '',
+    netName: '',
     password: '',
     passwordAgain: ''
   })
