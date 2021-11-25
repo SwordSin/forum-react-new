@@ -1,16 +1,11 @@
-import { InlintStyleType, InputCallBackType, LoginDataType } from '@/shims'
+import { InlintStyleType, LoginDataType } from '@/shims'
 import Input from '@/component/input/Input'
 import Button from '@/component/button/Button'
 import React, { useState } from 'react'
 import { login } from '@/api/register'
-import { LoingItemList, LoingDatas } from '@/data/CommonData'
-
-interface LoingItemPropsType {
-  label: string;
-  name: string;
-  type: string;
-  callback: InputCallBackType;
-}
+import { LoingItemList, LoingDatas, InputStyle, InputboxStyle } from '@/data/CommonData'
+import { getCookie } from '@/unit/commonMethods'
+import { decrypt } from '@/unit/security'
 
 // 整体元素居中
 const divStyle:InlintStyleType = {
@@ -23,30 +18,6 @@ const titleStyle:InlintStyleType = {
   left: '-60px'
 }
 
-// const testCheckboxChange = function(event:React.ChangeEvent<HTMLInputElement>) {
-
-//     console.log(event.target.checked)
-// }
-
-// 注册元素
-const LoinItem = function(props:LoingItemPropsType) {
-    const [checked, setChecked] = useState<boolean>(true)
-    return (
-        <div style={{display: 'flex', width: '300px', marginBottom: '5px'}}>
-        <div style={{flex: '2'}}>
-            {props.label}
-        </div>
-        {
-            props.name==='rememberMe'
-            ? <div style={{ width: '200px', flex: '5 1 0%'}}> <input type={props.type} name={props.name} checked = {checked} onChange={(event) => {
-                setChecked(event.target.checked)
-                props.callback('rememberMe', (event.target.checked).toString())
-            }} /> </div>
-            : <Input style={{flex: '5'}} type={props.type} name={props.name} callback={props.callback}></Input>
-        }
-        </div>
-    )
-}
 
 const loginClick = function(value:LoginDataType) {
     login(value).then(resp => {
@@ -70,10 +41,42 @@ function Login() {
     }})
   }
 
+  const [checked, setChecked] = useState<boolean>(true)
+
   return (
     <div style={divStyle}>
       <h3 style={titleStyle}>欢迎来到 V2EX，这里是创意工作者的数字化公共空间。</h3>
-      { LoingItemList.map((val, index) => <LoinItem key={val + index.toString()} type={val.type} label={val.label} name={val.name} callback={setManyInputValue}></LoinItem>) }
+      { LoingItemList.map((val, index) => (
+        <React.Fragment key={index.toString()}>
+            <div style={{display: 'flex', width: '300px', marginBottom: '5px'}}>
+              <div style={{flex: '2'}}>
+                  {val.label}
+              </div>
+              {
+                  val.name==='rememberMe'
+                  ? <div style={{ width: '200px', flex: '5 1 0%'}}> <input type={val.type} name={val.name} checked = {checked} onChange={(event) => {
+                      setChecked(event.target.checked)
+                      setManyInputValue(val.name, (event.target.checked).toString())
+                  }} /> </div>
+                  : val.name === 'password'
+                  ? <div style={{...InputboxStyle, flex: '5 1 0%'}}> <input type={val.type} name={val.name} style={ InputStyle } value={loginItemValue.password} onChange={(event) => { setManyInputValue(val.name, event.target.value)}} onFocus={() => {
+                    // 查看是否是记住密码的用户
+                    const username = getCookie('username')
+                    // debugger
+                    if(username === loginItemValue.username) {
+                      // 获取密码
+                      const password = getCookie('password')
+                      console.log(decrypt(password))
+                      setRegisterItemValue({...loginItemValue, password: decrypt(password)})
+                    }
+                  }} /> </div>
+                  : <Input style={{flex: '5'}} type={val.type} name={val.name} callback={setManyInputValue}></Input>
+              }
+            </div>
+        </React.Fragment>
+      )
+      ) }
+
       <div style={{marginTop: '20px'}}>
         <Button name="登录" style={{marginRight: '20px'}} value={loginItemValue} func={loginClick}></Button>
         <Button name="清除"></Button>

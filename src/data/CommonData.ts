@@ -1,3 +1,5 @@
+import { InlintStyleType } from '@/shims'
+
 // 共同数据
 
 // 注册表单渲染用数据
@@ -62,4 +64,24 @@ export const LoingDatas = {
     username: '',
     password: '',
     rememberMe: true
+}
+
+// input的通用样式
+export const InputStyle:InlintStyleType = {
+    width: '100%',
+    height: '100%',
+    fontSize: '16px',
+    lineHeight: '16px',
+    padding: '1px',
+    paddingBottom: '2px',
+    border: 'none',
+    outline: 'none',
+    backgroundColor: 'transparent',
+    boxSizing: 'border-box'
+}
+
+export const InputboxStyle:InlintStyleType = {
+    width: '200px',
+    borderRadius: '3px',
+    border: '1px solid var(--box-border-focus-color)'
 }

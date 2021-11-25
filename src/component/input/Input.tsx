@@ -1,12 +1,12 @@
 import { InlintStyleType, InputCallBackType } from '@/shims'
 import { useState } from 'react'
 
-const InputStyle:InlintStyleType = {
+const InputboxStyle:InlintStyleType = {
     width: '200px',
     borderRadius: '3px',
     border: '1px solid var(--box-border-focus-color)'
 }
-const inputStyle:InlintStyleType = {
+const InputStyle:InlintStyleType = {
     width: '100%',
     height: '100%',
     fontSize: '16px',
@@ -22,8 +22,8 @@ const inputStyle:InlintStyleType = {
 const Input = function(props: {style: InlintStyleType, name: string, callback: InputCallBackType, type: string}) {
     const [value, setValue] = useState('')
     return (
-        <div style={{...InputStyle, ...props.style}}>
-            <input type={props.type} style={inputStyle} name={props.name} value={value} onChange={e => {
+        <div style={{...InputboxStyle, ...props.style}}>
+            <input type={props.type} style={InputStyle} name={props.name} value={value} onChange={e => {
                 setValue(e.target.value)
                 props.callback(props.name, e.target.value)
             }} ></input>
