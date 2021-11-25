@@ -1,75 +1,85 @@
-// import Input from '@/component/input/Input'
-import React, { useState } from "react"
-import { useRef } from "react"
+import { InlintStyleType, InputCallBackType, LoginDataType } from '@/shims'
+import Input from '@/component/input/Input'
+import Button from '@/component/button/Button'
+import React, { useState } from 'react'
+import { login } from '@/api/register'
+import { LoingItemList, LoingDatas } from '@/data/CommonData'
 
-
-const eventFun = function(event:React.MouseEvent, count:number) {
-    console.log(count)
-    console.log(event.target)
+interface LoingItemPropsType {
+  label: string;
+  name: string;
+  callback: InputCallBackType;
 }
 
-const test = function(e:React.MouseEvent) {
-    console.log(e)
+// 整体元素居中
+const divStyle:InlintStyleType = {
+  paddingLeft: '35%',
+  marginTop: '5%'
+}
+const titleStyle:InlintStyleType = {
+  marginBottom: '50px',
+  position: 'relative',
+  left: '-60px'
 }
 
-interface InputValueTypes {
-    [key:string]: string;
-}
+// const testCheckboxChange = function(event:React.ChangeEvent<HTMLInputElement>) {
 
-const Login = function() {
-    const textInput = useRef(null)
+//     console.log(event.target.checked)
+// }
 
-    const [inputValues, setInputValues] = useState<InputValueTypes>({name: '', email: ''})
-    
-    const inputValueFun = function(e:React.ChangeEvent<HTMLInputElement>) {
-        console.log(e.target.value)
-        setInputValues({
-            [e.target.name]: e.target.value
-        })
-    }
-    
-    const [count, setCount] = useState<number>(0)
-    const test1 = true
-
-    const [testValue, setTestValue] = useState('')
-    const inputTestValueFun = function(e:React.ChangeEvent<HTMLInputElement>) {
-        console.log(textInput.current)
-        setTestValue(e.target.value)
-    }
-
-
+// 注册元素
+const LoinItem = function(props:LoingItemPropsType) {
+    const [checked, setChecked] = useState<boolean>(true)
     return (
-        <div>
-            <h1>useState</h1>
-            <p>你点击了{count}下</p>
-            <button onClick={() => setCount(count + 1)}>
-                Click me
-            </button>
-            <p >react 传递参数</p>
-            <button onClick={(e) => eventFun(e, count)}>点击</button>
-            <button onClick={test}>测试</button>
-            {/* 条件渲染 */}
-            {
-                true && <div>这是有一个&&条件</div>
-            }
-            {
-                test1
-                ? <div>这是一个三木运算符</div>
-                : <div>fals</div>
-            }
-
-            {
-                [1, 2, 3, 4].map(val => <div key={val}>列表{val}</div>)
-            }
-
-            {/* 多个表单输入 */}
-            <input type="text" name="name" value={inputValues.name} onChange={inputValueFun} />
-            <input type="text" name="email" value={inputValues.email} onChange={inputValueFun} />
-            <input ref={textInput} type="text" name="email" value={testValue} onChange={inputTestValueFun} />
+        <div style={{display: 'flex', width: '300px', marginBottom: '5px'}}>
+        <div style={{flex: '2'}}>
+            {props.label}
+        </div>
+        {
+            props.name==='rememberMe'
+            ? <div style={{ width: '200px', flex: '5 1 0%'}}> <input type="checkbox" name={props.name} checked = {checked} onChange={(event) => {
+                setChecked(event.target.checked)
+                props.callback('rememberMe', (event.target.checked).toString())
+            }} /> </div>
+            : <Input style={{flex: '5'}} name={props.name} callback={props.callback}></Input>
+        }
         </div>
     )
 }
 
+const loginClick = function(value:LoginDataType) {
+    login(value).then(resp => {
+        console.log(resp)
+    })
+}
+
+function Login() {
+  const [loginItemValue, setRegisterItemValue] = useState<LoginDataType>({...LoingDatas})
+
+  const setManyInputValue = function(name:string, value:string|boolean) {
+    console.log(name, value)
+    if(name === 'rememberMe') {
+        if(value === "false") {
+            value = false
+        } else {
+            value = true
+        }
+    }
+    setRegisterItemValue({...loginItemValue, ...{
+      [name]: value
+    }})
+  }
+
+  return (
+    <div style={divStyle}>
+      <h3 style={titleStyle}>欢迎来到 V2EX，这里是创意工作者的数字化公共空间。</h3>
+      { LoingItemList.map((val, index) => <LoinItem key={val + index.toString()} label={val.label} name={val.name} callback={setManyInputValue}></LoinItem>) }
+      <div style={{marginTop: '20px'}}>
+        <Button name="登录" style={{marginRight: '20px'}} value={loginItemValue} func={loginClick}></Button>
+        <Button name="清除"></Button>
+      </div>
+    </div>
+  )
+}
+
 export default Login
-
-

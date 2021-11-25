@@ -19,6 +19,8 @@ function App() {
         <Route component={ Header } path="/content"></Route>
         <Route component={ Login } path="/login"></Route>
         <Route component={ Register } path="/register"></Route>
+        {/* <Route component={ () => <Register type="login"></Register> } path="/login"></Route>
+        <Route component={ () => <Register type="register"></Register> } path="/register"></Route> */}
         <Route component={ NotFound } path="/404"></Route>
         <Redirect to="/404" />
       </Switch>

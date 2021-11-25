@@ -1,5 +1,3 @@
-// 全局变量
-
 export interface InlintStyleType {
     [key:string]:string;
 }
@@ -10,4 +8,21 @@ export interface PropsType {
 
 export interface InputCallBackType {
     (name:string, value:string): void
+}
+
+// 注册数据类型
+export interface RegisterDataType {
+    username: string;
+    email: string;
+    netName: string;
+    password: string;
+    passwordAgain: string
+}
+
+// 登录数据类型
+
+export interface LoginDataType {
+    username: string;
+    password: string;
+    rememberMe: boolean;
 }

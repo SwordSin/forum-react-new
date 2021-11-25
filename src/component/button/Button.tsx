@@ -3,32 +3,24 @@ import { InlintStyleType } from "@/shims"
 
 
 // 定义一个函数类型
-interface PropsFunc {
-    (value:any):void;
+interface PropsFunc<T> {
+    (value:T):void;
 }
 
-interface PropsType {
+interface PropsType<T> {
     name: string;
     style?: InlintStyleType;
-    value?: any;
-    func?: PropsFunc;
+    value?: T;
+    func?: PropsFunc<T>;
 }
 
-let funcb = function(value:any):void {
-    console.log(value)
-    console.log('这是个测试')
-}
-let valueb = ''
-
-const Button = function(props : PropsType = {name: '这是按钮'}) {
-    if(props.func) {
-        funcb = props.func
-    }
+const Button = function<T>(props : PropsType<T> = {name: '这是按钮'}) {
+    let valueb:any = null
     if(props.value) {
         valueb = props.value
     }
     return (
-        <input className={MyButtonStyle.mybutton} type="button" value={props.name} style={props.style} onClick={() => funcb(valueb)} />
+        <input className={MyButtonStyle.mybutton} type="button" value={props.name} style={props.style} onClick={() => props.func && props.func(valueb)} />
     )
 }
 
