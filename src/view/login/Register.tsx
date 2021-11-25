@@ -8,6 +8,7 @@ import { RegisterItemList, RegisterDatas } from '@/data/CommonData'
 interface RegisterItemPropsType {
   label: string;
   name: string;
+  type: string;
   callback: InputCallBackType;
 }
 
@@ -29,7 +30,7 @@ const RegisterItem = function(props:RegisterItemPropsType) {
       <div style={{flex: '2'}}>
         {props.label}
       </div>
-      <Input style={{flex: '5'}} name={props.name} callback={props.callback}></Input>
+      <Input style={{flex: '5'}} type={props.type} name={props.name} callback={props.callback}></Input>
     </div>
   )
 }
@@ -52,7 +53,7 @@ function Register() {
   return (
     <div style={divStyle}>
       <h3 style={titleStyle}>欢迎来到 V2EX，这里是创意工作者的数字化公共空间。</h3>
-      {RegisterItemList.map((val, index) =>  <RegisterItem key={val + index.toString()} label={val.label} name={val.name} callback={setManyInputValue}></RegisterItem>)}
+      {RegisterItemList.map((val, index) =>  <RegisterItem key={val + index.toString()} type={val.type} label={val.label} name={val.name} callback={setManyInputValue}></RegisterItem>)}
       <div style={{marginTop: '20px'}}>
         <Button name="清除" style={{marginRight: '20px'}}></Button>
         <Button name="注册" value={registerItemValue} func={registerClick}></Button>

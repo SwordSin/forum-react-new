@@ -4,23 +4,28 @@
 export const RegisterItemList = [
     {
         label: '用户名',
-        name: 'username'
+        name: 'username',
+        type: 'text'
     },
     {
         label: 'email',
-        name: 'email'
+        name: 'email',
+        type: 'text'
     },
     {
         label: '昵称',
-        name: 'netName'
+        name: 'netName',
+        type: 'text'
     },
     {
         label: '密码',
-        name: 'password'
+        name: 'password',
+        type: 'password'
     },
     {
         label: '确认密码',
-        name: 'passwordAgain'
+        name: 'passwordAgain',
+        type: 'password'
     }
 ]
 
@@ -37,15 +42,18 @@ export const RegisterDatas = {
 export const LoingItemList = [
     {
         label: '用户名',
-        name: 'username'
+        name: 'username',
+        type: 'text'
     },
     {
         label: '密码',
-        name: 'password'
+        name: 'password',
+        type: 'password'
     },
     {
         label: '记住我',
-        name: 'rememberMe'
+        name: 'rememberMe',
+        type: 'checkbox'
     }
 ]
 

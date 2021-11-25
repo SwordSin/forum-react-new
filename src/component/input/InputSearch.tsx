@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import styled from 'styled-components'
-// import { InlintStyleType } from '@/shims'
+import { InlintStyleType } from '@/shims'
 
 // const InputStyle = {
 //     boxSizing: 'border-box',
@@ -14,19 +13,18 @@ import styled from 'styled-components'
 //     backgroundColor: 'transparenasdfasdt'
 // }
 
-
-const InputStyle = styled.input`
-    width: 100%;
-    height: 100%;
-    font-size: 16px;
-    line-height: 16px;
-    padding: 1px;
-    padding-bottom: 2px;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    box-sizing: border-box;
-`
+const inputStyle:InlintStyleType = {
+    width: '100%',
+    height: '100%',
+    fontSize: '16px',
+    lineHeight: '16px',
+    padding: '1px',
+    paddingBottom: '2px',
+    border: 'none',
+    outline: 'none',
+    backgroundColor: 'transparent',
+    boxSizing: 'border-box'
+}
 
 // const SearchBox = styled.div`
 //     position: absolute;
@@ -51,9 +49,9 @@ const Input = function() {
 
     return (
         <div>
-            <InputStyle type="text" value={value} onChange={e => {
+            <input style={ inputStyle } type="text" value={value} onChange={e => {
                 setValue(e.target.value)
-            }}></InputStyle>
+            }}></input>
             {/* <SearchBox>
                 <div style={boxStyle}>
                     <h3>内容1</h3>
