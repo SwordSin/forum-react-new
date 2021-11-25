@@ -15,7 +15,7 @@ const UserNameStyle:InlintStyleType = {
 
 // 用户和游客的不同权限
 const HeaderTab = {
-    user: ['我们的愿景', '设置', '笔记本', '用户名'],
+    username: ['我们的愿景', '设置', '笔记本', '用户名'],
     tourist: ['注册', '登录']
 }
 
@@ -40,8 +40,9 @@ const Header = function() {
 
     // 判断是否已经登录
     let titles = HeaderTab.tourist
-    if(document.cookie.includes('username')) {
-        titles = HeaderTab.user
+    // debugger
+    if(document.cookie.indexOf('username=') > -1) {
+        titles = HeaderTab.username
     }
     return (
         <div>

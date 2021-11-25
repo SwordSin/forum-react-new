@@ -21,7 +21,12 @@ const titleStyle:InlintStyleType = {
 
 const loginClick = function(value:LoginDataType) {
     login(value).then(resp => {
-        console.log(resp)
+      // debugger
+        if(Number.parseInt(resp.data) === 1) {
+          location.href = '/'
+        } else {
+          alert('登录错误')
+        }
     })
 }
 
@@ -79,7 +84,7 @@ function Login() {
 
       <div style={{marginTop: '20px'}}>
         <Button name="登录" style={{marginRight: '20px'}} value={loginItemValue} func={loginClick}></Button>
-        <Button name="清除"></Button>
+        <Button name="进入首页"></Button>
       </div>
     </div>
   )
