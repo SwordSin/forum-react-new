@@ -4,8 +4,11 @@ const TablistStyle = require('./Tablist.module.scss')
 import Tab from '@/component/button/Tab'
 import { InlintStyleType } from '@/shims'
 import { useLocation } from 'react-router-dom'
-
 import Path from '@/view/path/Path'
+import { getBoardInfoList } from '@/api/board'
+import { useState } from 'react'
+import { BoardInfoType } from '@/shims'
+
 
 const TablistBoxStyle:InlintStyleType = {
     float: 'left'
@@ -23,13 +26,20 @@ const TabList = function() {
     const tmpArray = location.pathname.split('/')
     tmpArray.shift()
     tmpArray[0] = '首页'
+
+    const [boardList, setBoardList] = useState<BoardInfoType[]>([])
+
+    getBoardInfoList().then(resp => {
+        setBoardList(resp.data)
+    })
+
     return (
         <div>
             <div className={TablistStyle.tablist} style={TablistBoxStyle}>
                 {
-                    ['板块1', '板块2', '板块3', '板块4'].map((val, index) => (<Tab 
-                        key={val + index.toString()}
-                        name={val} path={'/content/' + val}></Tab>))
+                    boardList.map(val => (<Tab 
+                        key={val.boardId}
+                        name={val.boardName} path={'/content/' + val.boardName}></Tab>))
                 }
             </div>
             <div style={PathBoxStyle}>

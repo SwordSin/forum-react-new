@@ -26,3 +26,13 @@ export interface LoginDataType {
     password: string;
     rememberMe: boolean;
 }
+
+// 板块类型
+export interface BoardInfoType {
+    boardId: number;
+    boardName: string;
+    param1: string;
+    param2: string;
+    param3: string;
+    param4: string;
+}
