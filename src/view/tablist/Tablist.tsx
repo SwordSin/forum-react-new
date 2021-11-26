@@ -6,7 +6,7 @@ import { InlintStyleType } from '@/shims'
 import { useLocation } from 'react-router-dom'
 import Path from '@/view/path/Path'
 import { getBoardInfoList } from '@/api/board'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { BoardInfoType } from '@/shims'
 
 
@@ -20,6 +20,11 @@ const PathBoxStyle:InlintStyleType = {
     lineHeight: '30px'
 }
 
+// let boardInfoData:BoardInfoType[]
+// getBoardInfoList().then(resp => {
+//     console.log('返回响应')
+//     boardInfoData = resp.data
+// })
 
 const TabList = function() {
     const location = useLocation()
@@ -28,9 +33,13 @@ const TabList = function() {
     tmpArray[0] = '首页'
 
     const [boardList, setBoardList] = useState<BoardInfoType[]>([])
-
-    getBoardInfoList().then(resp => {
-        setBoardList(resp.data)
+    
+    useEffect(() => {
+        if(boardList.length === 0) {
+            getBoardInfoList().then(resp => {
+                setBoardList(resp.data)
+            })
+        }
     })
 
     return (

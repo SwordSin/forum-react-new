@@ -47,15 +47,14 @@ const Header = function() {
     // 执行副作用
     useEffect(() => {
         if (document.cookie.indexOf('username=') > -1) {
-            (async function () {
-                // 根据cookie获取userName
-                const respNetName = await getAccountOneKey('net_name', 'username', getCookie('username'))
-                if(respNetName.data !== '') {
+            // 根据cookie获取userName
+            getAccountOneKey('net_name', 'username', getCookie('username')).then(resp => {
+                if(resp.data !== '') {
                     HeaderTab.username.pop()
-                    HeaderTab.username.push(respNetName.data)
+                    HeaderTab.username.push(resp.data)
                     setTitles(HeaderTab.username)
                 }
-            })()
+            })
         }
     })
     // setTitles(HeaderTab.username)
