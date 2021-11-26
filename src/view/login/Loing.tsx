@@ -7,6 +7,9 @@ import { LoingItemList, LoingDatas, InputStyle, InputboxStyle } from '@/data/Com
 import { getCookie } from '@/unit/commonMethods'
 import { decrypt } from '@/unit/security'
 
+// 使用redux实现数据共享
+import { createStore } from 'redux'
+
 // 整体元素居中
 const divStyle:InlintStyleType = {
   paddingLeft: '35%',

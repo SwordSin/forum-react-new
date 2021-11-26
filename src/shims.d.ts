@@ -20,7 +20,6 @@ export interface RegisterDataType {
 }
 
 // 登录数据类型
-
 export interface LoginDataType {
     username: string;
     password: string;
@@ -35,4 +34,18 @@ export interface BoardInfoType {
     param2: string;
     param3: string;
     param4: string;
+}
+
+// 用户数据结构
+export interface UserInfoType {
+    userId: number;
+    username: string;
+    email: string;
+    netName: string;
+    password: string;
+    headImg: string;
+    param1?: string;
+    param2?: string;
+    param3?: string;
+    param4?: string;
 }
