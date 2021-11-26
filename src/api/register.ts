@@ -31,3 +31,15 @@ export function login(data:LoginDataType) {
     data: data
   })
 }
+
+export function getAccountOneKey(resultKey: string, queryKey: string, queryValue:string) {
+  return request({
+    url: '/userInfo/getOneAccountKey',
+    method: 'get',
+    params: {
+      queryKey: queryKey,
+      queryValue: queryValue,
+      resultKey: resultKey
+    }
+  })
+}

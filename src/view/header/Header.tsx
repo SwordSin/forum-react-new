@@ -3,6 +3,9 @@ import { InlintStyleType } from '@/shims'
 import Input from '@/component/input/InputSearch'
 import Content from '@/view/content/Content'
 import { useHistory } from 'react-router-dom'
+import { getAccountOneKey } from '@/api/register'
+import { useEffect, useState } from 'react'
+import { getCookie } from '@/unit/commonMethods'
 
 const SearchBoxStyle:InlintStyleType = {
     marginTop: '10px',
@@ -38,12 +41,24 @@ const userFunction = function(val:string, history:any) {
 const Header = function() {
     const history = useHistory()
 
+    const [titles, setTitles] = useState<string[]>(HeaderTab.tourist)
+
     // 判断是否已经登录
-    let titles = HeaderTab.tourist
-    // debugger
-    if(document.cookie.indexOf('username=') > -1) {
-        titles = HeaderTab.username
-    }
+    // 执行副作用
+    useEffect(() => {
+        if (document.cookie.indexOf('username=') > -1) {
+            (async function () {
+                // 根据cookie获取userName
+                const respNetName = await getAccountOneKey('net_name', 'username', getCookie('username'))
+                if(respNetName.data !== '') {
+                    HeaderTab.username.pop()
+                    HeaderTab.username.push(respNetName.data)
+                    setTitles(HeaderTab.username)
+                }
+            })()
+        }
+    })
+    // setTitles(HeaderTab.username)
     return (
         <div>
             <div className= { HeaderStyle.header }>
