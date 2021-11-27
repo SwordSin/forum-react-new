@@ -1,11 +1,13 @@
 const HeaderStyle  = require('./Header.module.scss')
-import { InlintStyleType } from '@/shims'
+import { InlintStyleType, UserInfoType } from '@/shims'
 import Input from '@/component/input/InputSearch'
 import Content from '@/view/content/Content'
 import { useHistory } from 'react-router-dom'
 import { getAccountOneKey } from '@/api/register'
 import { useEffect, useState } from 'react'
 import { getCookie } from '@/unit/commonMethods'
+
+import { useSelector } from 'react-redux'
 
 const SearchBoxStyle:InlintStyleType = {
     marginTop: '10px',
@@ -43,6 +45,16 @@ const Header = function() {
 
     const [titles, setTitles] = useState<string[]>(HeaderTab.tourist)
 
+    // const testFun = function() {
+    // }
+    // const testData =  useSelector((state:UserInfoType) => {
+    //     console.log('-----------查看userinfo')
+    //     debugger
+    //     console.log(state)
+    //     return state
+    // })
+    
+
     // 判断是否已经登录
     // 执行副作用
     useEffect(() => {
@@ -78,6 +90,8 @@ const Header = function() {
                             >{val}</div>)
                         )
                     }
+
+                    {/* <button onClick={testFun}>测试按钮</button> */}
                 </div>
             </div>
             <Content></Content>

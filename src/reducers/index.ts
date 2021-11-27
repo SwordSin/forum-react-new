@@ -1,9 +1,13 @@
+
+
+// export { default as userInfo } from './UserInfoReducer'
 import { combineReducers } from 'redux'
-import userInfoReduce from './myReudcer'
+import userInfo from './UserInfoReducer'
+
 
 // 通过combineReducers把多个reducer进行合并
 const rootReducers = combineReducers({
-  user: userInfoReduce
+    userInfo: userInfo
 })
 
 export default rootReducers

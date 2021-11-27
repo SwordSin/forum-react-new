@@ -9,7 +9,6 @@ import { decrypt } from '@/unit/security'
 
 // 使用redux实现数据共享
 import { useDispatch } from 'react-redux'
-import { Dispatch } from 'redux'
 import { useHistory } from 'react-router-dom'
 
 // 整体元素居中
@@ -25,22 +24,44 @@ const titleStyle:InlintStyleType = {
 
 
 // const loginClick = function(value:LoginDataType, dispatch: Dispatch<{type: string, payload: UserInfoType}>) {
-const loginClick = function(value:LoginDataType) {
-    login(value).then(resp => {
-      console.log(resp)
-      // debugger
-        // if(Number.parseInt(resp.data) === 1) {
-        //   // dispatch(resp.data)
-        //   location.href = '/'
-        // } else {
-        //   alert('登录错误')
-        // }
-    })
+// 定义回调函数的类型
+interface DispatchUserInfoFun {
+  (userData:UserInfoType):void
+} 
+const loginClick = function(value:LoginDataType, func:DispatchUserInfoFun) {
+  login(value).then(resp => {
+    if(resp.data.status === 1) {
+      console.log('提交状态')
+      console.log({
+        type: 'userInfoData',
+        payload: resp.data.data
+      })
+      func(resp.data.data)
+      location.href = '/'
+    } else {
+      alert("发生登录错误")
+    }
+    console.log(resp)
+  })
 }
 
 function Login() {
   const [loginItemValue, setRegisterItemValue] = useState<LoginDataType>({...LoingDatas})
   const history = useHistory()
+  const dispatch = useDispatch()
+
+  // 提交数据
+  const dispatchUserInfo = (userInfo: UserInfoType) => {
+    console.log('---------查看提交的数据')
+    console.log(userInfo)
+    // debugger
+    dispatch(
+      {
+        type: 'SET_USER_INFO',
+        payload: userInfo
+      }
+    )
+  }
 
   const setManyInputValue = function(name:string, value:string|boolean) {
     if(name === 'rememberMe') {
@@ -92,7 +113,7 @@ function Login() {
       ) }
 
       <div style={{marginTop: '20px'}}>
-        <Button name="登录" style={{marginRight: '20px'}} func={() => loginClick(loginItemValue) }></Button>
+        <Button name="登录" style={{marginRight: '20px'}} func={() => loginClick(loginItemValue, dispatchUserInfo) }></Button>
         <Button name="进入首页" func={ () => history.push('/') }></Button>
       </div>
     </div>

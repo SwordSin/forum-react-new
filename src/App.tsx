@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import Header from '@/view/header/Header'
-import Login from '@/view/login/Loing'
+import Login from '@/view/login/Login'
 import Register from '@/view/login/Register'
 import NotFound from '@/component/404'
 
