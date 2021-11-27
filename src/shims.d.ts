@@ -49,3 +49,9 @@ export interface UserInfoType {
     param3?: string;
     param4?: string;
 }
+
+// api返回类型
+export interface ApiDataType<T> {
+    status: string;
+    data: T;
+}

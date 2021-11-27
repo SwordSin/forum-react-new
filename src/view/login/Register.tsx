@@ -38,12 +38,11 @@ const RegisterItem = function(props:RegisterItemPropsType) {
 
 const registerClick = function(value:RegisterDataType) {
   registerUser(value).then(resp => {
-    if (Number.parseInt(resp.data) > 0) {
-      location.href = '/'
-    } else if(Number.parseInt(resp.data) === -1) {
-      alert('email/用户名重复')
+    if (Number.parseInt(resp.data.status) === 1) {
+      alert('注册成功, 点击确定返回进入登录页面')
+      location.href = '/login'
     } else {
-      alert('发生未知错误')
+      alert(resp.data.data)
     }
     console.log(resp)
   })
@@ -63,8 +62,8 @@ function Register() {
       <h3 style={titleStyle}>欢迎来到 V2EX，这里是创意工作者的数字化公共空间。</h3>
       {RegisterItemList.map((val, index) =>  <RegisterItem key={val + index.toString()} type={val.type} label={val.label} name={val.name} callback={setManyInputValue}></RegisterItem>)}
       <div style={{marginTop: '20px'}}>
-        <Button name="注册" value={registerItemValue} func={registerClick} style={{marginRight: '20px'}}></Button>
-        <Button name="进入首页" value="/" func={(path:string) => {history.push(path)}}></Button>
+        <Button name="注册" func={() => registerClick(registerItemValue) } style={{marginRight: '20px'}}></Button>
+        <Button name="进入首页" func={() => {history.push('/')}}></Button>
       </div>
     </div>
   )

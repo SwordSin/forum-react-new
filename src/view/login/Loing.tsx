@@ -1,4 +1,4 @@
-import { InlintStyleType, LoginDataType } from '@/shims'
+import { InlintStyleType, LoginDataType, UserInfoType } from '@/shims'
 import Input from '@/component/input/Input'
 import Button from '@/component/button/Button'
 import React, { useState } from 'react'
@@ -8,7 +8,9 @@ import { getCookie } from '@/unit/commonMethods'
 import { decrypt } from '@/unit/security'
 
 // 使用redux实现数据共享
-import { createStore } from 'redux'
+import { useDispatch } from 'react-redux'
+import { Dispatch } from 'redux'
+import { useHistory } from 'react-router-dom'
 
 // 整体元素居中
 const divStyle:InlintStyleType = {
@@ -22,19 +24,23 @@ const titleStyle:InlintStyleType = {
 }
 
 
+// const loginClick = function(value:LoginDataType, dispatch: Dispatch<{type: string, payload: UserInfoType}>) {
 const loginClick = function(value:LoginDataType) {
     login(value).then(resp => {
+      console.log(resp)
       // debugger
-        if(Number.parseInt(resp.data) === 1) {
-          location.href = '/'
-        } else {
-          alert('登录错误')
-        }
+        // if(Number.parseInt(resp.data) === 1) {
+        //   // dispatch(resp.data)
+        //   location.href = '/'
+        // } else {
+        //   alert('登录错误')
+        // }
     })
 }
 
 function Login() {
   const [loginItemValue, setRegisterItemValue] = useState<LoginDataType>({...LoingDatas})
+  const history = useHistory()
 
   const setManyInputValue = function(name:string, value:string|boolean) {
     if(name === 'rememberMe') {
@@ -86,8 +92,8 @@ function Login() {
       ) }
 
       <div style={{marginTop: '20px'}}>
-        <Button name="登录" style={{marginRight: '20px'}} value={loginItemValue} func={loginClick}></Button>
-        <Button name="进入首页"></Button>
+        <Button name="登录" style={{marginRight: '20px'}} func={() => loginClick(loginItemValue) }></Button>
+        <Button name="进入首页" func={ () => history.push('/') }></Button>
       </div>
     </div>
   )
