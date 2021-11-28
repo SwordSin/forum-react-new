@@ -24,7 +24,6 @@ const HeaderTab = {
 
 // 用户功能按钮点击事件
 const userFunction = function(val:string, history:any) {
-    console.log(history)
     if(val === '登录') {
         history.push({
             pathname: '/login'
@@ -46,9 +45,6 @@ const Header = function() {
     // const testFun = function() {
     // }
     let netName = useSelector((state:{userInfo: UserInfoType}) => {
-        console.log('-----------查看userinfo')
-        // debugger
-        console.log(state)
         return state.userInfo.netName
     })
     

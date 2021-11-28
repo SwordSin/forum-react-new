@@ -55,3 +55,11 @@ export interface ApiDataType<T> {
     status: string;
     data: T;
 }
+
+// 富文本编辑器 渲染input的内容
+export interface EditorInput {
+    focus: boolean;
+    value: string;
+    iname: string;
+    ref?: any
+}

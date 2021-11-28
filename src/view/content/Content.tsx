@@ -41,7 +41,6 @@ const editorContentStyle: InlintStyleType = {
 const Content = function() {
     const math = useRouteMatch()
     const loaction = useLocation()
-    console.log('查看当前路由' + loaction.pathname)
     return (
         <div className={ContentStyle.content}>
             <div>

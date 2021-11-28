@@ -1,5 +1,5 @@
 import { InlintStyleType, InputCallBackType, RegisterDataType } from '@/shims'
-import Input from '@/component/input/Input'
+import Input from '@/component/input/InputLogin'
 import Button from '@/component/button/Button'
 import { useState } from 'react'
 import { registerUser } from '@/api/register'
