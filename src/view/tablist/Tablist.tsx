@@ -2,12 +2,14 @@ const TablistStyle = require('./Tablist.module.scss')
 // import {InlineStyleType} from '@/typings/shims'
 
 import Tab from '@/component/button/Tab'
-import { InlintStyleType } from '@/shims'
+import { InlintStyleType, BoardInfoType } from '@/shims'
 import { useLocation } from 'react-router-dom'
 import Path from '@/view/path/Path'
 import { getBoardInfoList } from '@/api/board'
 import { useEffect, useState } from 'react'
-import { BoardInfoType } from '@/shims'
+
+// 使用redux实现数据共享
+import { useDispatch } from 'react-redux'
 
 
 const TablistBoxStyle:InlintStyleType = {
@@ -28,6 +30,7 @@ const PathBoxStyle:InlintStyleType = {
 
 const TabList = function() {
     const location = useLocation()
+    const dispatch = useDispatch()
     const tmpArray = location.pathname.split('/')
     tmpArray.shift()
     tmpArray[0] = '首页'
@@ -38,6 +41,12 @@ const TabList = function() {
         if(boardList.length === 0) {
             getBoardInfoList().then(resp => {
                 setBoardList(resp.data)
+                dispatch(
+                    {
+                      type: 'SET_BOARD_INFO',
+                      payload: resp.data
+                    }
+                  )
             })
         }
     })

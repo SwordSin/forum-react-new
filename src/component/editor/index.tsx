@@ -5,10 +5,10 @@ import React, { useRef, useState } from 'react'
 import { EditorInput } from '@/shims'
 
 // 添加input
-const addInput = function(inputName: string) {
-    console.log(inputName)
-    return inputName
-}
+// const addInput = function(inputName: string) {
+//     console.log(inputName)
+//     return inputName
+// }
 
 // 生成随机字符串
 Math.random().toString(36).slice(-8)

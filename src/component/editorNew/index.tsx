@@ -15,7 +15,7 @@ const editor:InlintStyleType = {
 
 const Editor = React.forwardRef((props:any, ref:any) => {
     // const ref:any = useRef()
-    ref.current?.focus()
+    // ref.current?.focus()
     return (
         <div style={editorBox}>
             <textarea ref={ref} name={props.name} style={editor} placeholder="请输入想要编辑的内容"></textarea>

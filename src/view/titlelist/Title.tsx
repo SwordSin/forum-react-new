@@ -52,7 +52,7 @@ const Title = function(props:propsType) {
     const math = useRouteMatch()
     return (
         <TitleDiv>
-            <ImgStyle src={require('./touxiang.png').default} alt="" />
+            {/* <ImgStyle src={require('./touxiang.png').default} alt="" /> */}
             <DivStyle>
                 <Topic name={props.name} path={`${math.url}/${props.name}`}></Topic>
                 <Tab name={props.titleType} style={tabStyle}></Tab>
