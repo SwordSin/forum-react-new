@@ -10,11 +10,11 @@ const TitleDiv = styled.div`
     border-bottom: 1px solid var(--box-border-color);
 `
 
-const ImgStyle = styled.img`
-    width: 50px;
-    height: 50px;
-    float: left;
-`
+// const ImgStyle = styled.img`
+//     width: 50px;
+//     height: 50px;
+//     float: left;
+// `
 
 const DivStyle = styled.div`
     width: calc(100% - 60px);

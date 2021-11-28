@@ -63,3 +63,19 @@ export interface EditorInput {
     iname: string;
     ref?: any
 }
+
+// 帖子内容类型
+export interface PostsDataType {
+    postsId?: number;
+    boardId: number;
+    postsAuthId: number;
+    postsTitle: string;
+    postsContent: string;
+    postsAuthName: string;
+    param1: string;
+    param2: string;
+    param3: string;
+    param4: string;
+    param5: string;
+    param6: string;
+}

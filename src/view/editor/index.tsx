@@ -2,9 +2,11 @@
 import Editor from '@/component/editorNew'
 import React, { useRef, useState } from 'react'
 import Button from '@/component/button/Button'
-import { InlintStyleType, BoardInfoType } from '@/shims'
+import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/shims'
 import Input from '@/component/input/Input'
 import { useSelector } from 'react-redux'
+
+import { savePostsInfoApi } from '@/api/board'
 
 const buttonBoxStyle:InlintStyleType = {
     marginTop: '10px'
@@ -23,27 +25,48 @@ const SelectStyle:InlintStyleType = {
 const EditorIndex = function() {
     const refTextrea:any = useRef()
     const refInput:any = useRef()
-    let boardInfoData:BoardInfoType[] = useSelector((state:{boardInfo: BoardInfoType[]}) => {
+    const boardInfoData:BoardInfoType[] = useSelector((state:{boardInfo: BoardInfoType[]}) => {
         return state.boardInfo
     })
+    const userInfoData:UserInfoType = useSelector((state:{userInfo: UserInfoType}) => {
+        return state.userInfo
+    })
     const [board, setBoard] = useState('0')
-    const postsContent = {
-        title: '',
-        board: 0,
-        content: ''
-    }
-
+    
     const clickButton = function() {
-        postsContent.board = Number.parseInt(board)
-        postsContent.title = refInput.current.value
-        postsContent.content = refTextrea.current.value
-        if (postsContent.board === 0) {
+        const savePostsParam:PostsDataType = {
+            boardId: Number.parseInt(board),
+            postsTitle: refInput.current.value,
+            postsContent: refTextrea.current.value,
+            postsAuthId: userInfoData.userId,
+            postsAuthName: userInfoData.netName,
+            param1: '',
+            param2: '',
+            param3: '',
+            param4: '',
+            param5: '',
+            param6: ''
+        }
+        let tmp:boolean = true
+        if (savePostsParam.boardId === 0) {
+            tmp = false
             alert('请选择板块')
-        } else if (postsContent.content === '') {
+        } else if (savePostsParam.postsContent === '') {
+            tmp = false
             alert('请输入内容')
-        } else if (postsContent.title === '') {
+        } else if (savePostsParam.postsTitle === '') {
+            tmp = false
             alert('请输入标题')
         }
+        if(tmp) {
+            savePostsInfoApi(savePostsParam).then(resp => {
+                if(resp.data.status === 1) {
+                    alert('保存帖子成功')
+                } else {
+                    alert(resp.data.data)
+                }
+            })
+        } 
     }
 
     return (
