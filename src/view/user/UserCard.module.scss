@@ -13,3 +13,21 @@
         }
     }
 }
+
+
+// 打开富文本编辑器链接样式
+.editer {
+    text-align: left;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 20px;
+}
+.editer > a:active, .editer > a:link, .editer > a:visited {
+    color: #778087;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+.editer > a:hover {
+    text-decoration:underline;
+}

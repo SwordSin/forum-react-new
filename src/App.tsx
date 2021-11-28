@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Header from '@/view/header/Header'
 import Login from '@/view/login/Login'
 import Register from '@/view/login/Register'
+// import EditorIndex from '@/view/editor/index'
 import NotFound from '@/component/404'
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route component={ Header } path="/content"></Route>
         <Route component={ Login } path="/login"></Route>
         <Route component={ Register } path="/register"></Route>
+        {/* <Route component={ EditorIndex } path="/editor"></Route> */}
         {/* <Route component={ () => <Register type="login"></Register> } path="/login"></Route>
         <Route component={ () => <Register type="register"></Register> } path="/register"></Route> */}
         <Route component={ NotFound } path="/404"></Route>

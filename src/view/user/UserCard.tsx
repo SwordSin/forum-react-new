@@ -1,5 +1,7 @@
-import { InlintStyleType } from "@/shims"
+import { InlintStyleType, UserInfoType } from "@/shims"
 const UserCardStyle = require('./UserCard.module.scss')
+import { useSelector } from 'react-redux'
+
 const boxStyle:InlintStyleType = {
     padding: '10px'
 }
@@ -27,13 +29,22 @@ const threeBoxStyle:InlintStyleType = {
 }
 
 const UserCard = function() {
+
+    // 获取用户信息
+    let userInfo:UserInfoType = useSelector((state:{userInfo: UserInfoType}) => {
+        console.log('-----------查看userinfo')
+        // debugger
+        console.log(state)
+        return state.userInfo
+    })
     return (
         <div style={boxStyle}>
             <div style={fristBoxStyle}>
-                <img style={imgStyle} src={require('@/asset/image/touxiang.png').default} alt="" />
+                {/* <img style={imgStyle} src={require('@/asset/image/touxiang.png').default} alt="" /> */}
+                <img style={imgStyle} src={userInfo.headImg} alt="" />
                 <div style={userContentStyle}>
                     <span>
-                        zhengzhipeng
+                        {userInfo.netName}
                     </span>
                 </div>
             </div>
@@ -53,6 +64,10 @@ const UserCard = function() {
             </div>
             <div style={threeBoxStyle}>
                 <hr />
+            </div>
+            <div className={UserCardStyle.editer}>
+                <img style={{height: '30px', width: '30px', float: 'left', marginRight: '10px'}} src={require('@/asset/image/compose.png').default} alt="" />
+                <a href="/content/editor">创作新主题</a>
             </div>
         </div>
     )
