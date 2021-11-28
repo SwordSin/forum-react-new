@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import Title from './Title'
+import Page from '@/component/page/index'
 
 
 const TitlelistStyle = styled.div`
@@ -13,6 +14,7 @@ const Titlelist = function() {
             <Title name="标题1" titleType="标题类型1"></Title>
             <Title name="标题2" titleType="标题类型1"></Title>
             {/* <Title></Title> */}
+            <Page></Page>
         </TitlelistStyle>
     )
 }
