@@ -28,7 +28,7 @@
 // export default createStore(_reducers, enhancer)
 
 
-import { createStore, compose, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducers from './reducers'
 

@@ -95,12 +95,13 @@ function Login() {
                   }} /> </div>
                   : val.name === 'password'
                   ? <div style={{...InputboxStyle, flex: '5 1 0%'}}> <input type={val.type} name={val.name} style={ InputStyle } value={loginItemValue.password} onChange={(event) => { setManyInputValue(val.name, event.target.value)}} onFocus={() => {
+                    console.log('获取用户名', loginItemValue.username)
                     // 查看是否是记住密码的用户
-                    const username = getCookie('username')
+                    const password = getCookie('username' + loginItemValue.username)
                     // debugger
-                    if(username === loginItemValue.username) {
+                    if(password !== '') {
                       // 获取密码
-                      const password = getCookie('password')
+                      // const password = getCookie('password')
                       console.log(decrypt(password))
                       setRegisterItemValue({...loginItemValue, password: decrypt(password)})
                     }

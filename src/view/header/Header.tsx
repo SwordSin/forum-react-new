@@ -3,9 +3,7 @@ import { InlintStyleType, UserInfoType } from '@/shims'
 import Input from '@/component/input/InputSearch'
 import Content from '@/view/content/Content'
 import { useHistory } from 'react-router-dom'
-import { getAccountOneKey } from '@/api/register'
 import { useEffect, useState } from 'react'
-import { getCookie } from '@/unit/commonMethods'
 
 import { useSelector } from 'react-redux'
 
@@ -47,28 +45,21 @@ const Header = function() {
 
     // const testFun = function() {
     // }
-    // const testData =  useSelector((state:UserInfoType) => {
-    //     console.log('-----------查看userinfo')
-    //     debugger
-    //     console.log(state)
-    //     return state
-    // })
-    
-
-    // 判断是否已经登录
-    // 执行副作用
-    useEffect(() => {
-        if (document.cookie.indexOf('username=') > -1) {
-            // 根据cookie获取userName
-            getAccountOneKey('net_name', 'username', getCookie('username')).then(resp => {
-                if(resp.data !== '') {
-                    HeaderTab.username.pop()
-                    HeaderTab.username.push(resp.data)
-                    setTitles(HeaderTab.username)
-                }
-            })
-        }
+    let netName = useSelector((state:{userInfo: UserInfoType}) => {
+        console.log('-----------查看userinfo')
+        // debugger
+        console.log(state)
+        return state.userInfo.netName
     })
+    
+    // 设置userName的值
+    useEffect(() => {
+        if(netName !== '') {
+            HeaderTab.username.pop()
+            HeaderTab.username.push(netName)
+            setTitles(HeaderTab.username)
+        }
+    }, [netName])
     // setTitles(HeaderTab.username)
     return (
         <div>
