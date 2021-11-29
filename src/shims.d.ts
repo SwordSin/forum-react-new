@@ -72,6 +72,8 @@ export interface PostsDataType {
     postsTitle: string;
     postsContent: string;
     postsAuthName: string;
+    publisDate?: string;
+    modifyDate?: string;
     param1: string;
     param2: string;
     param3: string;
