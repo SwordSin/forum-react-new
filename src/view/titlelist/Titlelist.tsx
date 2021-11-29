@@ -25,9 +25,7 @@ const Titlelist = function() {
             // console.log(resp.data.data.data)
             setPostData(resp.data.data.data)
         })
-    })
-
-
+    }, [getTitleListData])
 
 
     return (
