@@ -44,6 +44,7 @@ const tabStyle = {
 }
 
 interface propsType {
+    id: number;
     name: string;
     titleType: string;
 }
@@ -54,7 +55,7 @@ const Title = function(props:propsType) {
         <TitleDiv>
             {/* <ImgStyle src={require('./touxiang.png').default} alt="" /> */}
             <DivStyle>
-                <Topic name={props.name} path={`${math.url}/${props.name}`}></Topic>
+                <Topic name={props.name} path={`${math.url}/${props.id}`}></Topic>
                 <Tab name={props.titleType} style={tabStyle}></Tab>
                 <SpanStyleOne>
                     &nbsp;•&nbsp; 

@@ -1,5 +1,5 @@
 import request from '@/unit/api'
-import { PostsDataType } from '@/shims'
+import { PostsDataType, TitleListPageType } from '@/shims'
 
 
 export function getBoardInfoList() {
@@ -14,5 +14,25 @@ export function savePostsInfoApi(postsInfo:PostsDataType) {
     url: '/board/savePostsInfo',
     method: 'post',
     data: postsInfo
+  })
+}
+
+
+// 获取postsList
+export function getPostsPageInfoApi(params: TitleListPageType) {
+  return request({
+    url: '/board/getPagePostsInfo',
+    method: 'get',
+    params: params
+  })
+}
+
+export function getPostsPageInfoOneApi(boardId: number) {
+  return request({
+    url: '/board/getPostsInfoOne',
+    method: 'get',
+    params: {
+      postsId: boardId
+    }
   })
 }

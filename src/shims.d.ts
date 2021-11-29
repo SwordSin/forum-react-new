@@ -79,3 +79,10 @@ export interface PostsDataType {
     param5: string;
     param6: string;
 }
+
+// titleList的类型
+export interface TitleListPageType {
+    boardId: number;
+    page: number;
+    size: number;
+}

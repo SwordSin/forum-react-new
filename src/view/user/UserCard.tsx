@@ -32,9 +32,9 @@ const UserCard = function() {
 
     // 获取用户信息
     let userInfo:UserInfoType = useSelector((state:{userInfo: UserInfoType}) => {
-        console.log('-----------查看userinfo')
-        // debugger
-        console.log(state)
+        // console.log('-----------查看userinfo')
+        // // debugger
+        // console.log(state)
         return state.userInfo
     })
     return (

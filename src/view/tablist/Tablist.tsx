@@ -53,13 +53,27 @@ const TabList = function() {
 
     return (
         <div>
+            {/* 左边的tab模块 */}
             <div className={TablistStyle.tablist} style={TablistBoxStyle}>
                 {
                     boardList.map(val => (<Tab 
                         key={val.boardId}
-                        name={val.boardName} path={'/content/' + val.boardName}></Tab>))
+                        name={val.boardName} path={'/content/' + val.boardName} callback={() => {
+                            // console.log('获取tabid')
+                            // console.log(val.boardId)
+                            // 修改tabId
+                            dispatch({
+                                type: 'SET_TTITLE_LIST_INFO',
+                                payload: {
+                                    boardId: val.boardId,
+                                    page: 1,
+                                    size: 20
+                                }
+                            })
+                        }}></Tab>))
                 }
             </div>
+            {/* 右边的path路径 */}
             <div style={PathBoxStyle}>
                 <Path pathlist={tmpArray}></Path>
             </div>
