@@ -41,6 +41,7 @@ const TabList = function() {
         if(boardList.length === 0) {
             getBoardInfoList().then(resp => {
                 setBoardList(resp.data)
+                // debugger
                 dispatch(
                     {
                       type: 'SET_BOARD_INFO',

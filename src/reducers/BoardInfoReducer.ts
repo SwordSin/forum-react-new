@@ -12,8 +12,9 @@ const InitBoardInfoData:BoardInfoType[] = [{
 export default function BoardInfoReducer(state:BoardInfoType[] = InitBoardInfoData, action: any) {
     switch (action.type) {
         case 'SET_BOARD_INFO':
+          // debugger
           return {
-            ...state,
+            // ...state,
             ...action.payload
           }
         default:

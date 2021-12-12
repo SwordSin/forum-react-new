@@ -11,7 +11,7 @@ service.interceptors.response.use(response => {
     console.log('发生错误')
     return Promise.reject(new Error(response.data || 'Error'))
   } else {
-    return response
+    return response.data
   }
 })
 

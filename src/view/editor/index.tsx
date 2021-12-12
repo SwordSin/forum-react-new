@@ -26,6 +26,8 @@ const EditorIndex = function() {
     const refTextrea:any = useRef()
     const refInput:any = useRef()
     const boardInfoData:BoardInfoType[] = useSelector((state:{boardInfo: BoardInfoType[]}) => {
+        // debugger
+        // console.log(state.boardInfo)
         return state.boardInfo
     })
     const userInfoData:UserInfoType = useSelector((state:{userInfo: UserInfoType}) => {
@@ -78,7 +80,7 @@ const EditorIndex = function() {
             <select style={SelectStyle} value={board} onChange={(event) => {setBoard(event.target.value)}}>
                 <option value="0">请选择发布板块</option>
                 {
-                    Object.values(boardInfoData).map(val => <option key={val.boardId.toString()} value={val.boardId}>{val.boardName}</option>)
+                    Object.values(boardInfoData).map((val) =>  <option key={val.boardId} value={val.boardId}>{val.boardName}</option>)
                 }
             </select>
             <Button name="发布" func={clickButton}></Button>
