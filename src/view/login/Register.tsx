@@ -1,6 +1,4 @@
 import { InlintStyleType, RegisterDataType } from '@/shims'
-// import Button from '@/component/button/Button'
-import { useState } from 'react'
 import { registerUser } from '@/api/register'
 import { RegisterItemList } from '@/data/CommonData'
 import { Form, Input, Button } from 'antd'
