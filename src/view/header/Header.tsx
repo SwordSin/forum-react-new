@@ -1,24 +1,24 @@
 const HeaderStyle  = require('./Header.module.scss')
 import { InlintStyleType, UserInfoType } from '@/shims'
-import Input from '@/component/input/InputSearch'
 import Content from '@/view/content/Content'
 import { useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import React from 'react'
+
+// 使用antd组件
+import { Menu } from 'antd'
 
 import { useSelector } from 'react-redux'
-
-const SearchBoxStyle:InlintStyleType = {
-    marginTop: '10px',
-    lineHeight: '0px'
-}
-
-const UserNameStyle:InlintStyleType = {
-    float: 'right'
+// 页头导航菜单的央视
+const MyMenuStyle:InlintStyleType = {
+    margin: '0 auto',
+    maxWidth: 'var(--content-width)',
+    height: '100%'
 }
 
 // 用户和游客的不同权限
 const HeaderTab = {
-    username: ['我们的愿景', '设置', '笔记本', '用户名'],
+    username: ['用户名', '笔记本', '设置', '我们的愿景'],
     tourist: ['注册', '登录']
 }
 
@@ -51,38 +51,44 @@ const Header = function() {
     // 设置userName的值
     useEffect(() => {
         if(netName !== '') {
-            HeaderTab.username.pop()
-            HeaderTab.username.push(netName)
+            HeaderTab.username[0] = netName
+            // HeaderTab.username.pop()
+            // HeaderTab.username.push(netName)
             setTitles(HeaderTab.username)
         }
     }, [netName])
     // setTitles(HeaderTab.username)
     return (
-        <div>
-            <div className= { HeaderStyle.header }>
-                <div>
-                    <div>Logo</div>
-                    {/* 搜索框 */}
-                    <div className={HeaderStyle.search} style={SearchBoxStyle}>
-                        <Input></Input>
-                    </div>
-                    {/* 用户功能按钮 */}
-                    { 
-                        titles.map((val, index) => 
-                            (<div 
-                                key={'title' + index.toString()}
-                                style={UserNameStyle}
-                                className={HeaderStyle.userlist}
-                                onClick={userFunction.bind(null, val, history)}
-                            >{val}</div>)
-                        )
-                    }
-
-                    {/* <button onClick={testFun}>测试按钮</button> */}
-                </div>
-            </div>
+        <React.Fragment>
+            <Menu mode='horizontal' style={MyMenuStyle}>
+                { 
+                    titles.map((val, index) => 
+                        (<Menu.Item key={'title' + index.toString()} onClick={userFunction.bind(null, val, history)}>
+                        {val}
+                        </Menu.Item>)
+                    )
+                }
+            </Menu>
             <Content></Content>
-        </div>
+        </React.Fragment>
+        // <div>
+        //     <div className= { HeaderStyle.header }>
+        //         <div>
+        //             {/* 用户功能按钮 */}
+        //             { 
+        //                 titles.map((val, index) => 
+        //                     (<div 
+        //                         key={'title' + index.toString()}
+        //                         style={UserNameStyle}
+        //                         className={HeaderStyle.userlist}
+        //                         onClick={userFunction.bind(null, val, history)}
+        //                     >{val}</div>)
+        //                 )
+        //             }
+        //         </div>
+        //     </div>
+        //     <Content></Content>
+        // </div>
     )
 }
 
