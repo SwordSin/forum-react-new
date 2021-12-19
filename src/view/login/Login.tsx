@@ -30,9 +30,6 @@ interface DispatchUserInfoFun {
 } 
 const loginClick = function(value:LoginDataType, func:DispatchUserInfoFun) {
   login(value).then(resp => {
-    console.log('--------查看登录返回值')
-    console.log(resp)
-    debugger
     if(resp.data.status === 1) {
       func(resp.data.data)
       location.href = '/'

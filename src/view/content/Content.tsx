@@ -57,12 +57,6 @@ const Content = function() {
                     </React.Fragment>
                         
                 }
-                {/* <Route path={math.url + '/editor'} component={ EditorIndex } exact></Route>
-                <Route path={math.url + '/:titleType'} exact>
-                    <Card component={Titlelist} style={titlelistStyle}></Card>
-                    <Card component={UserCard} style={usercardStyle}></Card>
-                </Route>
-                <Route path={math.url + '/:titleType' +  '/:titleId'} exact render={() => <Card component={TitleContent} style={titleContentStyle}></Card>} /> */}
             </div>
         </div>
     )

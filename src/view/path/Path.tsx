@@ -1,4 +1,5 @@
 import Topic from '@/component/topic/Topic'
+// import { Breadcrumb } from 'antd'
 import { InlintStyleType } from '@/shims'
 
 interface PathData {
@@ -14,6 +15,9 @@ const Path = function(props:PathData) {
         <div>
             {
                 props.pathlist.map((value, index) => {
+                    // return (
+                    //     <Breadcrumb.Item key={index.toString()}>{value}</Breadcrumb.Item>
+                    // )
                     let name = value + '/'
                     if (index === props.pathlist.length - 1) {
                         name = value
