@@ -28,6 +28,10 @@ const PathBoxStyle:InlintStyleType = {
 //     boardInfoData = resp.data
 // })
 
+interface StyleType {
+    [key:string]: string;
+}
+
 const TabList = function() {
     const location = useLocation()
     const dispatch = useDispatch()
@@ -36,7 +40,9 @@ const TabList = function() {
     tmpArray[0] = '首页'
 
     const [boardList, setBoardList] = useState<BoardInfoType[]>([])
-    
+    // 创建一个存储style的数组
+    const [boardListStyle, setBoardListStyle] = useState<Array<StyleType>>(new Array(boardList.length).fill({'': ''}))
+
     useEffect(() => {
         if(boardList.length === 0) {
             getBoardInfoList().then(resp => {
@@ -57,11 +63,19 @@ const TabList = function() {
             {/* 左边的tab模块 */}
             <div className={TablistStyle.tablist} style={TablistBoxStyle}>
                 {
-                     boardList instanceof Array && boardList.map(val => (<Tab 
+                     boardList instanceof Array && boardList.map((val, index) => (<Tab 
                          key={val.boardId}
                          name={val.boardName} path={'/content/' + val.boardName} callback={() => {
                             // console.log('获取tabid')
                             // console.log(val.boardId)
+                            // 重置 boardList
+                            const tmp = new Array(boardList.length).fill({'': ''})
+                            tmp[index] = {
+                                backgroundColor: '#334',
+                                color: '#fff',
+                                textDecoration: 'none'
+                            }
+                            setBoardListStyle(tmp) 
                             // 修改tabId
                             dispatch({
                                 type: 'SET_TTITLE_LIST_INFO',
@@ -71,7 +85,8 @@ const TabList = function() {
                                     size: 20
                                 }
                             })
-                        }}></Tab>))
+                        }}
+                         style={boardListStyle[index]}></Tab>))
                 }
             </div>
             {/* 右边的path路径 */}
