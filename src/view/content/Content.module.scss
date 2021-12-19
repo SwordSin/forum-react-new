@@ -2,6 +2,8 @@
     background-color: var(--box-border-color);
     padding-top: 1px;
     padding-bottom: 1px;
+    height: calc(100% - 46px);
+    overflow-y: scroll;
     > div {
         display: flex;
         max-width: var(--content-width);
