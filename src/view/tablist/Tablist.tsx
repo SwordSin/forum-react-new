@@ -68,14 +68,14 @@ const TabList = function() {
                          name={val.boardName} path={'/content/' + val.boardName} callback={() => {
                             // console.log('获取tabid')
                             // console.log(val.boardId)
-                            // 重置 boardList
-                            const tmp = new Array(boardList.length).fill({'': ''})
-                            tmp[index] = {
-                                backgroundColor: '#334',
-                                color: '#fff',
-                                textDecoration: 'none'
-                            }
-                            setBoardListStyle(tmp) 
+                            // 重置 boardList 设置永久颜色
+                            // const tmp = new Array(boardList.length).fill({'': ''})
+                            // tmp[index] = {
+                            //     backgroundColor: '#40a9ff',
+                            //     color: '#fff',
+                            //     textDecoration: 'none'
+                            // }
+                            // setBoardListStyle(tmp) 
                             // 修改tabId
                             dispatch({
                                 type: 'SET_TTITLE_LIST_INFO',

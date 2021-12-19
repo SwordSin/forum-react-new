@@ -1,118 +1,84 @@
-import { InlintStyleType, LoginDataType, UserInfoType } from '@/shims'
-import Input from '@/component/input/InputLogin'
-import Button from '@/component/button/Button'
-import React, { useState } from 'react'
+import { Form, Input, Button, Checkbox } from 'antd'
+import { InlintStyleType } from '@/shims'
 import { login } from '@/api/register'
-import { LoingItemList, LoingDatas, InputStyle, InputboxStyle } from '@/data/CommonData'
-import { getCookie } from '@/unit/commonMethods'
-import { decrypt } from '@/unit/security'
+import { useState } from 'react'
 
-// 使用redux实现数据共享
-import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
 
-// 整体元素居中
-const divStyle:InlintStyleType = {
-  paddingLeft: '35%',
-  marginTop: '5%'
+const FromStyle:InlintStyleType = {
+  width: '400px',
+  height: '400px',
+  position: 'absolute',
+  top: '0px',
+  left: '0px',
+  right: '0px',
+  bottom: '0px',
+  margin: 'auto'
 }
-const titleStyle:InlintStyleType = {
-  marginBottom: '50px',
-  position: 'relative',
-  left: '-60px'
+interface FormDataType {
+  username: string;
+  password: string;
+  rememberMe: boolean
 }
 
 
-// const loginClick = function(value:LoginDataType, dispatch: Dispatch<{type: string, payload: UserInfoType}>) {
-// 定义回调函数的类型
-interface DispatchUserInfoFun {
-  (userData:UserInfoType):void
-} 
-const loginClick = function(value:LoginDataType, func:DispatchUserInfoFun) {
-  login(value).then(resp => {
-    if(resp.data.status === 1) {
-      func(resp.data.data)
-      location.href = '/'
-    } else {
-      alert("发生登录错误")
+
+const Login = () => {
+  const onFinish = (values: FormDataType) => {
+    if (values.rememberMe === undefined) {
+      values.rememberMe = false
     }
-    console.log(resp)
-  })
-}
-
-function Login() {
-  const [loginItemValue, setRegisterItemValue] = useState<LoginDataType>({...LoingDatas})
-  const history = useHistory()
-  const dispatch = useDispatch()
-
-  // 提交数据
-  const dispatchUserInfo = (userInfo: UserInfoType) => {
-    console.log('---------查看提交的数据')
-    console.log(userInfo)
-    // debugger
-    dispatch(
-      {
-        type: 'SET_USER_INFO',
-        payload: userInfo
+    login(values).then(resp => {
+      if(resp.data.status === 1) {
+        location.href = '/'
+      } else {
+        alert("发生登录错误")
       }
-    )
+    })
   }
 
-  const setManyInputValue = function(name:string, value:string|boolean) {
-    if(name === 'rememberMe') {
-        if(value === "false") {
-            value = false
-        } else {
-            value = true
-        }
-    }
-    setRegisterItemValue({...loginItemValue, ...{
-      [name]: value
-    }})
-  }
-
-  const [checked, setChecked] = useState<boolean>(true)
 
   return (
-    <div style={divStyle}>
-      <h3 style={titleStyle}>欢迎来到 V2EX，这里是创意工作者的数字化公共空间。</h3>
-      { LoingItemList.map((val, index) => (
-        <React.Fragment key={index.toString()}>
-            <div style={{display: 'flex', width: '300px', marginBottom: '5px'}}>
-              <div style={{flex: '2'}}>
-                  {val.label}
-              </div>
-              {
-                  val.name==='rememberMe'
-                  ? <div style={{ width: '200px', flex: '5 1 0%'}}> <input type={val.type} name={val.name} checked = {checked} onChange={(event) => {
-                      setChecked(event.target.checked)
-                      setManyInputValue(val.name, (event.target.checked).toString())
-                  }} /> </div>
-                  : val.name === 'password'
-                  ? <div style={{...InputboxStyle, flex: '5 1 0%'}}> <input type={val.type} name={val.name} style={ InputStyle } value={loginItemValue.password} onChange={(event) => { setManyInputValue(val.name, event.target.value)}} onFocus={() => {
-                    console.log('获取用户名', loginItemValue.username)
-                    // 查看是否是记住密码的用户
-                    const password = getCookie('username' + loginItemValue.username)
-                    // debugger
-                    if(password !== '') {
-                      // 获取密码
-                      // const password = getCookie('password')
-                      console.log(decrypt(password))
-                      setRegisterItemValue({...loginItemValue, password: decrypt(password)})
-                    }
-                  }} /> </div>
-                  : <Input style={{flex: '5'}} type={val.type} name={val.name} callback={setManyInputValue}></Input>
-              }
-            </div>
-        </React.Fragment>
-      )
-      ) }
-
-      <div style={{marginTop: '20px'}}>
-        <Button name="登录" style={{marginRight: '20px'}} func={() => loginClick(loginItemValue, dispatchUserInfo) }></Button>
-        <Button name="进入首页" func={ () => history.push('/') }></Button>
+    <Form
+        name="basic"
+        labelCol={{ span: 8 }}
+        wrapperCol={{ span: 16 }}
+        initialValues={{ remember: true }}
+        onFinish={onFinish}
+        autoComplete="off"
+        style={FromStyle}
+    >
+      <div style={{textAlign: 'center', marginBottom: '30px'}}>
+        欢迎来到自由者论坛
       </div>
-    </div>
+      <Form.Item
+          label="用户名"
+          name="username"
+          rules={[{ required: true, message: '请输入用户名' }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+          label="密码"
+          name="password"
+          rules={[{ required: true, message: '请输入密码' }]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+      <Form.Item name="rememberMe" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+        <Checkbox>记住登录</Checkbox>
+      </Form.Item>
+
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Button type="primary" htmlType="submit" style={{marginRight: '20px'}}>
+          登录
+        </Button>
+        <Button onClick={() => {console.log('进入首页')}}>
+          进入首页
+        </Button>
+      </Form.Item>
+    </Form>
   )
 }
 
