@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import React from 'react'
 
 // 使用antd组件
-import { Menu } from 'antd'
+import { Menu, Input } from 'antd'
 
 import { useSelector } from 'react-redux'
 // 页头导航菜单的央视
@@ -68,6 +68,9 @@ const Header = function() {
                         </Menu.Item>)
                     )
                 }
+                <Menu.Item>
+                    <Input placeholder="Basic usage" ></Input>
+                </Menu.Item>
             </Menu>
             <Content></Content>
         </React.Fragment>
