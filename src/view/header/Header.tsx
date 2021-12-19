@@ -60,7 +60,7 @@ const Header = function() {
                         <Menu mode='horizontal' style={{float: 'right'}}>
                             { 
                                 titles.map((val, index) => 
-                                    (<Menu.Item key={'title' + index.toString()} onClick={userFunction.bind(null, val, history)}>
+                                    (<Menu.Item key={'title' + index.toString()} style={{padding: '0 8px'}} onClick={userFunction.bind(null, val, history)}>
                                     {val}
                                     </Menu.Item>)
                                 )
