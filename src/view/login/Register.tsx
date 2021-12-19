@@ -1,39 +1,25 @@
-import { InlintStyleType, InputCallBackType, RegisterDataType } from '@/shims'
-import Input from '@/component/input/InputLogin'
-import Button from '@/component/button/Button'
+import { InlintStyleType, RegisterDataType } from '@/shims'
+// import Button from '@/component/button/Button'
 import { useState } from 'react'
 import { registerUser } from '@/api/register'
-import { RegisterItemList, RegisterDatas } from '@/data/CommonData'
-import { useHistory } from 'react-router-dom'
+import { RegisterItemList } from '@/data/CommonData'
+import { Form, Input, Button } from 'antd'
 
-interface RegisterItemPropsType {
-  label: string;
-  name: string;
-  type: string;
-  callback: InputCallBackType;
+
+// 非空验证
+const rulesNotNull = (name:string) => {
+  return { required: true, message: '请输入' + name }
 }
 
-// 整体元素居中
-const divStyle:InlintStyleType = {
-  paddingLeft: '35%',
-  marginTop: '5%'
-}
-const titleStyle:InlintStyleType = {
-  marginBottom: '50px',
-  position: 'relative',
-  left: '-60px'
-}
-
-// 注册元素
-const RegisterItem = function(props:RegisterItemPropsType) {
-  return (
-    <div style={{display: 'flex', width: '300px', marginBottom: '5px'}}>
-      <div style={{flex: '2'}}>
-        {props.label}
-      </div>
-      <Input style={{flex: '5'}} type={props.type} name={props.name} callback={props.callback}></Input>
-    </div>
-  )
+const FromStyle:InlintStyleType = {
+  width: '450px',
+  height: '400px',
+  position: 'absolute',
+  top: '0px',
+  left: '0px',
+  right: '0px',
+  bottom: '0px',
+  margin: 'auto'
 }
 
 const registerClick = function(value:RegisterDataType) {
@@ -48,23 +34,35 @@ const registerClick = function(value:RegisterDataType) {
   })
 }
 
+
 function Register() {
-  const [registerItemValue, setRegisterItemValue] = useState<RegisterDataType>({...RegisterDatas})
-  const history = useHistory()
-  const setManyInputValue = function(name:string, value:string) {
-    setRegisterItemValue({...registerItemValue, ...{
-      [name]: value
-    }})
+  const onFinish = (values: RegisterDataType) => {
+    registerClick(values)
   }
 
   return (
-    <div style={divStyle}>
-      <h3 style={titleStyle}>欢迎来到 V2EX，这里是创意工作者的数字化公共空间。</h3>
-      {RegisterItemList.map((val, index) =>  <RegisterItem key={val + index.toString()} type={val.type} label={val.label} name={val.name} callback={setManyInputValue}></RegisterItem>)}
-      <div style={{marginTop: '20px'}}>
-        <Button name="注册" func={() => registerClick(registerItemValue) } style={{marginRight: '20px'}}></Button>
-        <Button name="进入首页" func={() => {history.push('/')}}></Button>
-      </div>
+    <div style={FromStyle}>
+      <h3 style={{textAlign: 'center', marginBottom: '30px'}}>欢迎来到自由者论坛</h3>
+      <Form
+          name="register"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          autoComplete="off"
+      >
+        {RegisterItemList.map((val, index) => 
+            (<Form.Item key={index.toString()} 
+                label={val.label} name={val.name} 
+                validateTrigger="onBlur"
+                rules={[rulesNotNull(val.label)]}>
+              <Input type={val.type}></Input>
+            </Form.Item>))}
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Button type="primary" style={{marginRight: '20px'}} htmlType="submit" >注册</Button>
+          <Button onClick={() => location.href = '/login'}>登录</Button>
+        </Form.Item>
+      </Form>
     </div>
   )
 }

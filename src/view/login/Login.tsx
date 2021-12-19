@@ -40,8 +40,8 @@ const Login = () => {
   return (
     <Form
         name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 18 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
