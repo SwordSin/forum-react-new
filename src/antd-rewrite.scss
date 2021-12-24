@@ -1,0 +1,11 @@
+// 重写antd的默认效果
+.ant-menu-horizontal > .ant-menu-item::after, .ant-menu-horizontal > .ant-menu-submenu::after {
+    position: absolute;
+    /* right: 20px; */
+    bottom: 0;
+    left: 0px;
+    width: 100%;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    content: '';
+}

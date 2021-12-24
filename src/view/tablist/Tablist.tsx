@@ -28,9 +28,9 @@ const PathBoxStyle:InlintStyleType = {
 //     boardInfoData = resp.data
 // })
 
-interface StyleType {
-    [key:string]: string;
-}
+// interface StyleType {
+//     [key:string]: string;
+// }
 
 const TabList = function() {
     const location = useLocation()
@@ -41,7 +41,7 @@ const TabList = function() {
 
     const [boardList, setBoardList] = useState<BoardInfoType[]>([])
     // 创建一个存储style的数组
-    const [boardListStyle, setBoardListStyle] = useState<Array<StyleType>>(new Array(boardList.length).fill({'': ''}))
+    // const [boardListStyle, setBoardListStyle] = useState<Array<StyleType>>(new Array(boardList.length).fill({'': ''}))
 
     useEffect(() => {
         if(boardList.length === 0) {
@@ -86,7 +86,8 @@ const TabList = function() {
                                 }
                             })
                         }}
-                         style={boardListStyle[index]}></Tab>))
+                        // style={boardListStyle[index]}
+                        ></Tab>))
                 }
             </div>
             {/* 右边的path路径 */}
