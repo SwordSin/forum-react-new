@@ -1,5 +1,5 @@
 // 引入编辑器
-import Editor from '@/component/editorNew/index.jsx'
+import Editor from '@/component/editorNew/index'
 import React, { useRef, useState } from 'react'
 import Button from '@/component/button/Button'
 import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/shims'
