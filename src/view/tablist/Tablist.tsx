@@ -63,7 +63,7 @@ const TabList = function() {
             {/* 左边的tab模块 */}
             <div className={TablistStyle.tablist} style={TablistBoxStyle}>
                 {
-                     boardList instanceof Array && boardList.map((val, index) => (<Tab 
+                     boardList instanceof Array && boardList.map((val) => (<Tab 
                          key={val.boardId}
                          name={val.boardName} path={'/content/' + val.boardName} callback={() => {
                             // console.log('获取tabid')

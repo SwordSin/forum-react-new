@@ -1,7 +1,7 @@
 import { Form, Input, Button, Checkbox } from 'antd'
 import { InlintStyleType } from '@/shims'
 import { login } from '@/api/register'
-import { useState } from 'react'
+// import { useState } from 'react'
 
 
 const FromStyle:InlintStyleType = {
