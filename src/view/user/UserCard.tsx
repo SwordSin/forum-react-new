@@ -1,6 +1,8 @@
 import { InlintStyleType, UserInfoType } from "@/typings/shims"
 const UserCardStyle = require('./UserCard.module.scss')
 import { useSelector } from 'react-redux'
+import { Button, Badge/* , Card, Statistic */} from 'antd'
+// import { LikeOutlined } from '@ant-design/icons'
 
 const boxStyle:InlintStyleType = {
     padding: '10px'
@@ -9,14 +11,19 @@ const boxStyle:InlintStyleType = {
 const imgStyle:InlintStyleType = {
     maxWidth: '48px',
     maxHeight: '48px',
-    float: 'left'
+    float: 'left',
+    borderRadius: '4px'
 }
 
 const userContentStyle:InlintStyleType = {
-    height: '48px',
-    lineHeight: '48px',
+    height: '24px',
+    lineHeight: '24px',
     paddingLeft: '10px',
-    float: 'left'
+    float: 'left',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    width: 'calc(100% - 48px)'
 }
 
 const fristBoxStyle:InlintStyleType = {
@@ -39,19 +46,37 @@ const UserCard = function() {
     })
     return (
         <div style={boxStyle}>
-            <div style={fristBoxStyle}>
-                {/* <img style={imgStyle} src={require('@/asset/image/touxiang.png').default} alt="" /> */}
-                <img style={imgStyle} src={userInfo.headImg} alt="" />
-                <div style={userContentStyle}>
-                    <span>
-                        {userInfo.netName}
-                    </span>
+            {/* <Card> */}
+            <Badge.Ribbon text="LV5" color="#f3a034" style={{top: '-5px'}}>
+                <div style={fristBoxStyle}>
+                    {/* <img style={imgStyle} src={require('@/asset/image/touxiang.png').default} alt="" /> */}
+                    <img style={imgStyle} src={userInfo.headImg} alt="" />
+                    <div style={userContentStyle}>
+                        <span>
+                            {userInfo.netName}
+                        </span>
+                        <span>
+                            <Button type="primary" danger size="small" style={{marginLeft: '5px', height: '20px', padding: '0px 3px', fontSize: '11px'}}>大会员</Button>
+                            {/* <Badge
+                                className="site-badge-count-109"
+                                count={ '大会员' }
+                                style={{ backgroundColor: 'rgb(251, 114, 153)', marginLeft: '5px' }}
+                            /> */}
+                        </span>
+                    </div>
+                    <div style={userContentStyle}>
+                        <span>
+                            请输入个性签名,个性签名太长
+                        </span>
+                    </div>
                 </div>
-            </div>
+            </Badge.Ribbon>
+            {/* </Card> */}
             <div className={UserCardStyle.track}>
                 <div>
                     <div>0</div>
-                    <div>收藏</div>
+                    <div>点赞</div>
+                    {/* <Statistic title="点赞" value={100} prefix={<LikeOutlined />} /> */}
                 </div>
                 <div>
                     <div>0</div>
