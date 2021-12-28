@@ -2,10 +2,11 @@
 // import Editor from '@/component/editorNew/index'
 import Editor from '@/component/editorNew/DraftEdit'
 import React, { useRef, useState } from 'react'
-import Button from '@/component/button/Button'
+// import Button from '@/component/button/Button'
 import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/typings/shims'
 import Input from '@/component/input/Input'
 import { useSelector } from 'react-redux'
+import { Button } from 'antd'
 
 import { savePostsInfoApi } from '@/api/board'
 
@@ -84,7 +85,7 @@ const EditorIndex = function() {
                     Object.values(boardInfoData).map((val) =>  <option key={val.boardId} value={val.boardId}>{val.boardName}</option>)
                 }
             </select>
-            <Button name="发布" func={clickButton}></Button>
+            <Button onClick={clickButton}>发布</Button>
         </div>
     </React.Fragment>)
 }

@@ -1,44 +1,16 @@
-import { InlintStyleType, TitleListPageType } from '@/typings/shims'
-import Input from '@/component/input/Input'
-import Button from '@/component/button/Button'
+import { TitleListPageType } from '@/typings/shims'
 import { useDispatch, useSelector } from 'react-redux'
-import { useRef } from 'react'
-
-
-
-const pageBoxStyle:InlintStyleType = {
-    clear: 'both',
-    position: 'relative',
-    top: '3px',
-    paddingLeft: '20px'
-}
-const pageInputStyle:InlintStyleType = {
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-    width: '50px',
-    float: 'left',
-    marginRight: '20px'
-}
-
-const pageCodeStyle:InlintStyleType = {
-    float: 'left',
-    marginRight: '20px'
-}
-
-const ButtonStyle:InlintStyleType = {
-    height: '25px',
-    paddingTop: '1px',
-    marginRight: '10px'
-}
+import { Pagination  } from 'antd'
 
 const Page = function() {
     const pageData = useSelector((state:{titleList: TitleListPageType}) => {
         return state.titleList
     })
-    const refInput:any = useRef()
     const dispatch = useDispatch()
 
-    const jumpPage = function(page:number|string) {
+    const jumpPage = function(page: number, pageSize: number) {
+        console.log('跳转至', page)
+        console.log(pageSize)
         // 跳转页面
         if (!Number.isNaN(Number(page))) {
             dispatch({
@@ -54,19 +26,10 @@ const Page = function() {
         }
     }
 
-    return (<div style={ pageBoxStyle }>
-        <span style={pageCodeStyle}>第{pageData.page}页</span>
-        <span style={pageCodeStyle}>跳转至</span>
-        <Input ref={refInput} name="page" style={pageInputStyle} ></Input>
-        <Button style={ButtonStyle} name="跳转" func={() => {
-            jumpPage(refInput.current.value)
-        }}></Button>
-        <Button style={ButtonStyle} name="上一页" func={() => {jumpPage(pageData.page - 1)}}></Button>
-        <Button style={ButtonStyle} name="下一页" func={() => {
-            console.log(pageData.page)
-            jumpPage(pageData.page + 1)
-        }}></Button>
-    </div>)
+    return (
+        // style={{marginTop: '20px'}} 
+        <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={jumpPage} />
+    )
 }
 
 export default Page
