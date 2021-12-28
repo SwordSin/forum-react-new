@@ -1,6 +1,6 @@
 import request from '@/unit/api'
 
-import { RegisterDataType, LoginDataType } from '@/shims'
+import { RegisterDataType, LoginDataType } from '@/typings/shims'
 
 import {
   // 将密码转化为密文

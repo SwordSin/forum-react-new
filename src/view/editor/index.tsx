@@ -3,7 +3,7 @@
 import Editor from '@/component/editorNew/DraftEdit'
 import React, { useRef, useState } from 'react'
 import Button from '@/component/button/Button'
-import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/shims'
+import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/typings/shims'
 import Input from '@/component/input/Input'
 import { useSelector } from 'react-redux'
 

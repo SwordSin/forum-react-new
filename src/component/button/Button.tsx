@@ -1,5 +1,5 @@
 const MyButtonStyle = require('./Tab.module.scss')
-import { InlintStyleType } from "@/shims"
+import { InlintStyleType } from "@/typings/shims"
 
 
 // 定义一个函数类型

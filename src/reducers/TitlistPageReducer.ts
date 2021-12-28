@@ -1,4 +1,4 @@
-import { TitleListPageType } from '@/shims'
+import { TitleListPageType } from '@/typings/shims'
 
 const TitleListPageData:TitleListPageType = {
     boardId: 1,

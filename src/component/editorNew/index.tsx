@@ -1,4 +1,4 @@
-import { InlintStyleType } from '@/shims'
+import { InlintStyleType } from '@/typings/shims'
 import React from 'react'
 
 

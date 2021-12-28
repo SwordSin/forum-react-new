@@ -1,4 +1,4 @@
-import { UserInfoType } from '@/shims'
+import { UserInfoType } from '@/typings/shims'
 const initUserInfoData: UserInfoType = {
     userId: 0,
     username: '',

@@ -1,5 +1,5 @@
 const TopicStyle = require('./Topic.module.scss')
-import {InlintStyleType} from '@/shims'
+import {InlintStyleType} from '@/typings/shims'
 import { useHistory } from 'react-router-dom'
 
 interface TopicComponentProps {

@@ -2,7 +2,7 @@ const TablistStyle = require('./Tablist.module.scss')
 // import {InlineStyleType} from '@/typings/shims'
 
 import Tab from '@/component/button/Tab'
-import { InlintStyleType, BoardInfoType } from '@/shims'
+import { InlintStyleType, BoardInfoType } from '@/typings/shims'
 import { useLocation } from 'react-router-dom'
 import Path from '@/view/path/Path'
 import { getBoardInfoList } from '@/api/board'

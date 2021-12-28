@@ -1,4 +1,4 @@
-import { InlintStyleType, RegisterDataType } from '@/shims'
+import { InlintStyleType, RegisterDataType } from '@/typings/shims'
 import { registerUser } from '@/api/register'
 import { RegisterItemList } from '@/data/CommonData'
 import { Form, Input, Button } from 'antd'

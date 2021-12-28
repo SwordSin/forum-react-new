@@ -70,7 +70,7 @@
 // export default Input
 
 
-import { InlintStyleType } from '@/shims'
+import { InlintStyleType } from '@/typings/shims'
 import React, { useState } from 'react'
 
 // const InputboxStyle:InlintStyleType = {

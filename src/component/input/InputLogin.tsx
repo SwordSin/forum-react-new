@@ -1,4 +1,4 @@
-import { InlintStyleType, InputCallBackType } from '@/shims'
+import { InlintStyleType, InputCallBackType } from '@/typings/shims'
 import { useState } from 'react'
 
 const InputboxStyle:InlintStyleType = {

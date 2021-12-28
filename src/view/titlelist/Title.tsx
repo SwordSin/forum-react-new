@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Topic from '@/component/topic/Topic'
 import { useRouteMatch } from 'react-router-dom'
 import { Tag } from 'antd'
-import { InlintStyleType } from '@/shims'
+import { InlintStyleType } from '@/typings/shims'
 
 const TitleDiv = styled.div`
     width: 100%;

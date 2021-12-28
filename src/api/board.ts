@@ -1,5 +1,5 @@
 import request from '@/unit/api'
-import { PostsDataType, TitleListPageType } from '@/shims'
+import { PostsDataType, TitleListPageType } from '@/typings/shims'
 
 
 export function getBoardInfoList() {

@@ -2,7 +2,7 @@
 const EditorStyle = require('./EditorStyle.module.scss')
 import Input from '@/component/input/InputEditor'
 import React, { useRef, useState } from 'react'
-import { EditorInput } from '@/shims'
+import { EditorInput } from '@/typings/shims'
 
 // 添加input
 // const addInput = function(inputName: string) {

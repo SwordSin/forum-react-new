@@ -1,4 +1,4 @@
-import { BoardInfoType } from '@/shims'
+import { BoardInfoType } from '@/typings/shims'
 
 const InitBoardInfoData:BoardInfoType[] = [{
     boardId: 0, 

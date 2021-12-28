@@ -1,5 +1,5 @@
 // const HeaderStyle  = require('./Header.module.scss')
-import { UserInfoType } from '@/shims'
+import { UserInfoType } from '@/typings/shims'
 import Content from '@/view/content/Content'
 import { useHistory } from 'react-router-dom'
 import { useEffect, useState } from 'react'

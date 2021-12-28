@@ -1,4 +1,4 @@
-import { InlintStyleType, UserInfoType } from "@/shims"
+import { InlintStyleType, UserInfoType } from "@/typings/shims"
 const UserCardStyle = require('./UserCard.module.scss')
 import { useSelector } from 'react-redux'
 

@@ -1,7 +1,7 @@
 import { getPostsPageInfoOneApi } from '@/api/board'
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import { PostsDataType } from '@/shims'
+import { PostsDataType } from '@/typings/shims'
 
 const TitleContent = function() {
     const loaclcation = useLocation()

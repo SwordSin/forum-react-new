@@ -3,7 +3,7 @@ import Title from './Title'
 import Page from '@/component/page/index'
 
 import { useSelector } from 'react-redux'
-import { TitleListPageType, PostsDataType } from '@/shims'
+import { TitleListPageType, PostsDataType } from '@/typings/shims'
 import { getPostsPageInfoApi } from '@/api/board'
 import { useEffect, useState } from 'react'
 

@@ -1,6 +1,6 @@
 import Topic from '@/component/topic/Topic'
 // import { Breadcrumb } from 'antd'
-import { InlintStyleType } from '@/shims'
+import { InlintStyleType } from '@/typings/shims'
 
 interface PathData {
     pathlist: string[];

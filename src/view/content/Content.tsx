@@ -4,7 +4,7 @@ import Titlelist from '@/view/titlelist/Titlelist'
 import TitleContent from '@/view/titleContent/TitleContent'
 import UserCard from '@/view/user/UserCard'
 const ContentStyle = require('./Content.module.scss')
-import { InlintStyleType } from '@/shims'
+import { InlintStyleType } from '@/typings/shims'
 import { Route, useRouteMatch, useLocation  } from 'react-router-dom'
 
 import EditorIndex from '@/view/editor/index'

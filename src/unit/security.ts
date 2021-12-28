@@ -1,5 +1,5 @@
 const CryptoJS = require('crypto-js')
-import { LoginDataType, RegisterDataType } from '@/shims'
+import { LoginDataType, RegisterDataType } from '@/typings/shims'
 
 /**
  * 加密（需要先加载lib/aes/aes.min.js文件）

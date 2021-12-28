@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { InlintStyleType } from '@/shims'
+import { InlintStyleType } from '@/typings/shims'
 
 // const InputStyle = {
 //     boxSizing: 'border-box',

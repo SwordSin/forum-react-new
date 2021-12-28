@@ -1,4 +1,4 @@
-import { InlintStyleType, TitleListPageType } from '@/shims'
+import { InlintStyleType, TitleListPageType } from '@/typings/shims'
 import Input from '@/component/input/Input'
 import Button from '@/component/button/Button'
 import { useDispatch, useSelector } from 'react-redux'
