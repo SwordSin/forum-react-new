@@ -1,8 +1,10 @@
 import { InlintStyleType, UserInfoType } from "@/typings/shims"
 const UserCardStyle = require('./UserCard.module.scss')
 import { useSelector } from 'react-redux'
-import { Button, Badge/* , Card, Statistic */} from 'antd'
+import { Button, Badge/* , Card, Statistic */, Typography} from 'antd'
 // import { LikeOutlined } from '@ant-design/icons'
+const { Text } = Typography
+
 
 const boxStyle:InlintStyleType = {
     padding: '10px'
@@ -66,7 +68,9 @@ const UserCard = function() {
                     </div>
                     <div style={userContentStyle}>
                         <span>
-                            请输入个性签名,个性签名太长
+                            <Text type="secondary">
+                                请输入个性签名,个性签名太长
+                            </Text>
                         </span>
                     </div>
                 </div>

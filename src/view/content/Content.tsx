@@ -3,32 +3,46 @@ import Tablist from '@/view/tablist/Tablist'
 import Titlelist from '@/view/titlelist/Titlelist'
 import TitleContent from '@/view/titleContent/TitleContent'
 import UserCard from '@/view/user/UserCard'
+import ForumState from '@/view/forumState/ForumState'
+import Vote from '@/view/vote/Vote'
 const ContentStyle = require('./Content.module.scss')
 import { InlintStyleType } from '@/typings/shims'
 import { Route, useRouteMatch, useLocation  } from 'react-router-dom'
+import HotList from '@/view/hotList/HotList'
 
 import EditorIndex from '@/view/editor/index'
 import React from 'react'
+
+const marginTop:InlintStyleType = {
+    marginTop: '25px'
+}
 
 const tablistStyle: InlintStyleType = {
     flex: '1 80%'
 }
 const titlelistStyle: InlintStyleType = {
-    flex: '1 75%',
-    marginTop: '30px',
+    flex: '1 73%',
+    ...marginTop,
     paddingLeft: '0px'
 }
-const usercardStyle: InlintStyleType = {
-    flex: '1 13%',
-    marginTop: '30px',
+
+const leftBoxStyle:InlintStyleType = {
+    flex: '1 15%',
     paddingLeft: '0px',
     marginLeft: '2%'
+}
+
+const usercardStyle: InlintStyleType = {
+    ...marginTop,
+    paddingLeft: '0px',
+    marginLeft: '2%',
+    height: '190px'
 }
 
 
 const titleContentStyle: InlintStyleType = {
     flex: '1 80%',
-    marginTop: '30px',
+    ...marginTop,
     paddingLeft: '0px'
 }
 
@@ -51,7 +65,12 @@ const Content = function() {
                     : <React.Fragment>
                         <Route path={math.url + '/:titleType'} exact>
                             <Card component={Titlelist} style={titlelistStyle}></Card>
-                            <Card component={UserCard} style={usercardStyle}></Card>
+                            <div style={leftBoxStyle}>
+                                <Card component={UserCard} style={usercardStyle}></Card>
+                                <Card component={HotList} style={{...usercardStyle, height: '394px'}}></Card>
+                                <Card component={ForumState} style={usercardStyle}></Card>
+                                <Card component={Vote} style={usercardStyle}></Card>
+                            </div>
                         </Route>
                         <Route path={math.url + '/:titleType' +  '/:titleId'} exact render={() => <Card component={TitleContent} style={titleContentStyle}></Card>} />
                     </React.Fragment>
