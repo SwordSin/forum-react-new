@@ -6,9 +6,9 @@ import React, { useRef, useState, ForwardedRef } from 'react'
 import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/typings/shims'
 import Input from '@/component/input/Input'
 import { useSelector } from 'react-redux'
-import { Button, Typography  } from 'antd'
+import { Button/* , Typography*/  } from 'antd'
 import { convertToRaw, Editor, EditorState, RawDraftContentState } from 'draft-js'
-import { savePostsInfoApi } from '@/api/board'
+// import { savePostsInfoApi } from '@/api/board'
 
 const buttonBoxStyle:InlintStyleType = {
     marginTop: '10px'
@@ -90,7 +90,6 @@ const EditorIndex = function() {
 
     return (
     <React.Fragment>
-        <Typography.Title level={3}>请输入您的内容</Typography.Title>
         <MyEditor ref={refTextrea}></MyEditor>
         <div style={buttonBoxStyle}>
             <Input ref={ refInput } placeholder="输入您创作的标题" name="title" style={InputStyle}></Input>
