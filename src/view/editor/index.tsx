@@ -76,7 +76,7 @@ const EditorIndex = function() {
     return (
     <React.Fragment>
         <div>这是编辑界面</div>
-        <Editor name="editorText" ref={refTextrea}></Editor>
+        <Editor name="editorText"></Editor>
         <div style={buttonBoxStyle}>
             <Input ref={ refInput } placeholder="输入您创作的标题" name="title" style={InputStyle}></Input>
             <select style={SelectStyle} value={board} onChange={(event) => {setBoard(event.target.value)}}>

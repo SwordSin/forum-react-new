@@ -17,6 +17,8 @@ import { ConfigProvider } from 'antd'
 import zh_CN from 'antd/lib/locale-provider/zh_CN'
 import 'moment/locale/zh-cn'
 
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
+
 ReactDOM.render(
   // react的严格模式
   <React.StrictMode>
