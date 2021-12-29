@@ -2,6 +2,8 @@
 // import thunk from 'redux-thunk'
 // import reducers from './reducers/index'
 
+// yige ceshi 
+
 // // //  只要用上 persistStore 和 autoRehydrate 就行啦
 // // import {persistStore, persistReducer} from 'redux-persist'
 // // //  存储机制，可换成cookie等其他机制
