@@ -36,6 +36,9 @@ const EditorTest = function(props: any) {
     <div className='editor' name-data={props.name}>
         <Editor
             editorState={editorState}
+            localization={{
+                locale: 'zh'
+            }}
             toolbarClassName="toolbarClassName"
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
