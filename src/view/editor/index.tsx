@@ -7,6 +7,7 @@ import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/t
 import Input from '@/component/input/Input'
 import { useSelector } from 'react-redux'
 import { Button } from 'antd'
+import { convertToRaw } from 'draft-js'
 
 import { savePostsInfoApi } from '@/api/board'
 
@@ -51,32 +52,36 @@ const EditorIndex = function() {
             param5: '',
             param6: ''
         }
-        let tmp:boolean = true
-        if (savePostsParam.boardId === 0) {
-            tmp = false
-            alert('请选择板块')
-        } else if (savePostsParam.postsContent === '') {
-            tmp = false
-            alert('请输入内容')
-        } else if (savePostsParam.postsTitle === '') {
-            tmp = false
-            alert('请输入标题')
-        }
-        if(tmp) {
-            savePostsInfoApi(savePostsParam).then(resp => {
-                if(resp.data.status === 1) {
-                    alert('保存帖子成功')
-                } else {
-                    alert(resp.data.data)
-                }
-            })
-        } 
+        console.log(savePostsParam)
+        debugger
+        convertToRaw(refTextrea)
+        console.log(refTextrea)
+        // let tmp:boolean = true
+        // if (savePostsParam.boardId === 0) {
+        //     tmp = false
+        //     alert('请选择板块')
+        // } else if (savePostsParam.postsContent === '') {
+        //     tmp = false
+        //     alert('请输入内容')
+        // } else if (savePostsParam.postsTitle === '') {
+        //     tmp = false
+        //     alert('请输入标题')
+        // }
+        // if(tmp) {
+        //     savePostsInfoApi(savePostsParam).then(resp => {
+        //         if(resp.data.status === 1) {
+        //             alert('保存帖子成功')
+        //         } else {
+        //             alert(resp.data.data)
+        //         }
+        //     })
+        // } 
     }
 
     return (
     <React.Fragment>
         <div>这是编辑界面</div>
-        <Editor name="editorText"></Editor>
+        <Editor ref={refTextrea} name="editorText"></Editor>
         <div style={buttonBoxStyle}>
             <Input ref={ refInput } placeholder="输入您创作的标题" name="title" style={InputStyle}></Input>
             <select style={SelectStyle} value={board} onChange={(event) => {setBoard(event.target.value)}}>
