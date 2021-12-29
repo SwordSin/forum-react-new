@@ -1,14 +1,13 @@
 // 引入编辑器
 // import Editor from '@/component/editorNew/index'
-import Editor from '@/component/editorNew/DraftEdit'
-import React, { useRef, useState } from 'react'
+import MyEditor from '@/component/editorNew/DraftEdit'
+import React, { useRef, useState, ForwardedRef } from 'react'
 // import Button from '@/component/button/Button'
 import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/typings/shims'
 import Input from '@/component/input/Input'
 import { useSelector } from 'react-redux'
-import { Button } from 'antd'
-import { convertToRaw } from 'draft-js'
-
+import { Button, Typography  } from 'antd'
+import { convertToRaw, Editor, EditorState, RawDraftContentState } from 'draft-js'
 import { savePostsInfoApi } from '@/api/board'
 
 const buttonBoxStyle:InlintStyleType = {
@@ -26,7 +25,8 @@ const SelectStyle:InlintStyleType = {
 }
 
 const EditorIndex = function() {
-    const refTextrea:any = useRef()
+    const refTextrea:ForwardedRef<Editor> = useRef(null)
+    // const refTextrea:any = useRef()
     const refInput:any = useRef()
     const boardInfoData:BoardInfoType[] = useSelector((state:{boardInfo: BoardInfoType[]}) => {
         // debugger
@@ -37,12 +37,12 @@ const EditorIndex = function() {
         return state.userInfo
     })
     const [board, setBoard] = useState('0')
-    
+
     const clickButton = function() {
         const savePostsParam:PostsDataType = {
             boardId: Number.parseInt(board),
             postsTitle: refInput.current.value,
-            postsContent: refTextrea.current.value,
+            // postsContent: refTextrea.current.value,
             postsAuthId: userInfoData.userId,
             postsAuthName: userInfoData.netName,
             param1: '',
@@ -53,8 +53,18 @@ const EditorIndex = function() {
             param6: ''
         }
         console.log(savePostsParam)
-        debugger
-        convertToRaw(refTextrea)
+        // debugger
+        let tmpEditorState:EditorState
+        if (refTextrea.current?.props.editorState) {
+            tmpEditorState = refTextrea.current?.props.editorState
+            const contentObj: RawDraftContentState = convertToRaw(
+                tmpEditorState.getCurrentContent()
+            )
+            console.log(contentObj)
+        }
+        
+        // refTextrea.current?.props.onChange
+        // refTextrea.current.props.editorState.getCurrentContent()
         console.log(refTextrea)
         // let tmp:boolean = true
         // if (savePostsParam.boardId === 0) {
@@ -80,8 +90,8 @@ const EditorIndex = function() {
 
     return (
     <React.Fragment>
-        <div>这是编辑界面</div>
-        <Editor ref={refTextrea} name="editorText"></Editor>
+        <Typography.Title level={3}>请输入您的内容</Typography.Title>
+        <MyEditor ref={refTextrea}></MyEditor>
         <div style={buttonBoxStyle}>
             <Input ref={ refInput } placeholder="输入您创作的标题" name="title" style={InputStyle}></Input>
             <select style={SelectStyle} value={board} onChange={(event) => {setBoard(event.target.value)}}>

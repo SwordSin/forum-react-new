@@ -70,7 +70,7 @@ export interface PostsDataType {
     boardId: number;
     postsAuthId: number;
     postsTitle: string;
-    postsContent: string;
+    postsContent?: string;
     postsAuthName: string;
     publisDate?: string;
     modifyDate?: string;
