@@ -16,6 +16,7 @@ function getBase64(img:any, callback:any) {
     reader.readAsDataURL(img)
 }
 function beforeUpload(file:File) {
+    // debugger
     const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png'
     if (!isJpgOrPng) {
         message.error('You can only upload JPG/PNG file!')
@@ -72,11 +73,11 @@ const UploadModel = function(props:UploadModelType) {
                 listType="picture-card"
                 className="avatar-uploader"
                 showUploadList={false}
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
                 beforeUpload={beforeUpload}
                 onChange={handleChange}
             >
                 {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                {/* <img src={require('@/asset/image/compose.png').default} alt="avatar" style={{ width: '100%' }} /> */}
             </Upload>
         </Modal>
     )
