@@ -1,14 +1,24 @@
 import {Editor, EditorState } from 'draft-js'
 import React, { useState, ForwardedRef } from 'react'
-import { Input } from'antd'
+import { Input, Modal } from'antd'
 import { BoldOutlined, LinkOutlined, PictureOutlined, BgColorsOutlined, CaretDownOutlined, FontSizeOutlined } from '@ant-design/icons'
 const EditorStyle = require('./editor.module.scss')
+import UploadModel from '@/component/uploadModel/UploadModel'
 
 const focusTest = () => {
     console.log('获取焦点')
 }
+
 const EditorTest = React.forwardRef((props: { name?: string }, myRef: ForwardedRef<Editor>) => {
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
+    const [showModal, setShowModal] = useState(0)
+
+    // 上传图片
+    const uploadImage = () => {
+        console.log('上传图片')
+        const tmp = showModal + 1
+        setShowModal(tmp)
+    }
     // useEffect(() => {
     //     // 给编辑器添加焦点
     // }, [])
@@ -28,9 +38,10 @@ const EditorTest = React.forwardRef((props: { name?: string }, myRef: ForwardedR
                     <FontSizeOutlined />
                     标题
                 </div>
-                <div className={EditorStyle.fontPic}>
+                <div className={EditorStyle.fontPic} onClick={uploadImage}>
                     <PictureOutlined />
-                    插入图片<CaretDownOutlined style={{fontSize: '12px', display: 'inline'}} />
+                    插入图片
+                    {/* <CaretDownOutlined style={{fontSize: '12px', display: 'inline'}} /> */}
                 </div>
                 <div className={EditorStyle.fontPic}>
                     <BgColorsOutlined />
@@ -38,11 +49,12 @@ const EditorTest = React.forwardRef((props: { name?: string }, myRef: ForwardedR
                     <CaretDownOutlined style={{fontSize: '12px', display: 'inline'}} />
                 </div>
             </div>
-            
+            {/* 标题 */}
             <div style={{width: '100%', clear: 'both'}}>
-            <Input placeholder="请输入标题" bordered={false} style={{ fontSize: '30px', marginLeft: '5px', borderBottom: '1px solid #ebebeb', width: '70%', display: 'block'}} />
+                <Input placeholder="请输入标题" bordered={false} style={{ fontSize: '30px', marginLeft: '5px', borderBottom: '1px solid #ebebeb', width: '70%', display: 'block'}} />
             </div>
 
+            {/* 富文本编辑 */}
             <div className='editor' style={{
                 margin: 15,
                 backgroundColor: 'white',
@@ -56,6 +68,11 @@ const EditorTest = React.forwardRef((props: { name?: string }, myRef: ForwardedR
                     onFocus={focusTest}
                 />
             </div>
+
+            {/* 功能所需jsx */}
+            
+            {/* 上传图片 */}
+            <UploadModel showModal={showModal}></UploadModel>
         </div>
     )
 })
