@@ -1,23 +1,70 @@
-import {Editor, EditorState } from 'draft-js'
-import React, { useState, ForwardedRef } from 'react'
-import { Input, Modal } from'antd'
+import {Editor, EditorState, ContentState,  AtomicBlockUtils} from 'draft-js'
+import React, { useState, ForwardedRef, useRef, LegacyRef } from 'react'
+import { Input } from'antd'
 import { BoldOutlined, LinkOutlined, PictureOutlined, BgColorsOutlined, CaretDownOutlined, FontSizeOutlined } from '@ant-design/icons'
 const EditorStyle = require('./editor.module.scss')
 import UploadModel from '@/component/uploadModel/UploadModel'
+import Media from './Media'
 
 const focusTest = () => {
     console.log('获取焦点')
 }
 
-const EditorTest = React.forwardRef((props: { name?: string }, myRef: ForwardedRef<Editor>) => {
+  
+
+const EditorTest = (props: { name?: string }) => {
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
     const [showModal, setShowModal] = useState(0)
-
+    const myRef:LegacyRef<Editor> = useRef(null)
+    
     // 上传图片
     const uploadImage = () => {
         console.log('上传图片')
         const tmp = showModal + 1
         setShowModal(tmp)
+    }
+
+    const mediaBlockRenderer = (block:any) => {
+        if (block.getType() === 'atomic') {
+            return {
+                component: Media,
+                editable: false
+            }
+        }
+        return null
+    }
+
+    // 获取图片url函数
+    const getImgUrl = (url:string):string => {
+        // 创建一个新的editstate
+        const contentState: ContentState = editorState.getCurrentContent()
+        const contentStateWithEntity = contentState.createEntity(
+            'IMAGE',
+            'IMMUTABLE',
+            {
+                src: url,
+                width: '200px',
+                height: '200px'
+            }
+        )
+        const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
+
+        const newEditorState = EditorState.set(editorState, {
+            currentContent: contentStateWithEntity
+        })
+
+        const newNewEditorState = AtomicBlockUtils.insertAtomicBlock(
+            newEditorState,
+            entityKey,
+            ' '
+        )
+        // g
+        if (myRef.current) {
+            myRef.current.focus()
+        }
+        setEditorState(newNewEditorState)
+        console.log(editorState.getCurrentContent())
+        return url
     }
     // useEffect(() => {
     //     // 给编辑器添加焦点
@@ -66,16 +113,17 @@ const EditorTest = React.forwardRef((props: { name?: string }, myRef: ForwardedR
                 <Editor ref={myRef} editorState={editorState}
                     onChange={setEditorState}
                     onFocus={focusTest}
+                    blockRendererFn={mediaBlockRenderer}
                 />
             </div>
 
             {/* 功能所需jsx */}
             
             {/* 上传图片 */}
-            <UploadModel showModal={showModal}></UploadModel>
+            <UploadModel showModal={showModal} getImgUrl={getImgUrl}></UploadModel>
         </div>
     )
-})
+}
 
 export default EditorTest
 

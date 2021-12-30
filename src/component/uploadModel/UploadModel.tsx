@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react'
-import { Modal } from 'antd'
-const UploadModel = function(props:{
-    showModal: number
-} = {showModal: 0}) {
-    const [isModalVisible, setIsModalVisible] = useState(false)
+import { Modal, Input } from 'antd'
+import { LinkOutlined } from '@ant-design/icons'
 
+interface getImgUrlType {
+    (url:string):string;
+}
+interface UploadModelType {
+    showModal: number;
+    getImgUrl: getImgUrlType;
+}
+
+const UploadModel = function(props:UploadModelType) {
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const [url, setUrl] = useState('')
         useEffect(() => {
             console.log(123)
             if (props.showModal > 0) {
@@ -14,12 +22,20 @@ const UploadModel = function(props:{
     
         // closeImageUpload
         const closeImageUpload = () => {
+            props.getImgUrl(url)
             setIsModalVisible(false)
         }
 
     return (
         <Modal title="Basic Modal" visible={isModalVisible} onOk={closeImageUpload} onCancel={closeImageUpload}>
-            <h1>这是一个上传页面</h1>
+            <Input
+                key="linkUrl"
+                addonBefore={<LinkOutlined />}
+                placeholder="链接地址"
+                value={url}
+                onChange={(event:any) => {setUrl(event.target.value)}}
+                style={{ marginBottom: 12 }}
+            />
         </Modal>
     )
 }
