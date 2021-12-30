@@ -6,28 +6,18 @@ import React, { useRef, useState, ForwardedRef } from 'react'
 import { InlintStyleType, BoardInfoType, UserInfoType, PostsDataType } from '@/typings/shims'
 import Input from '@/component/input/Input'
 import { useSelector } from 'react-redux'
-import { Button/* , Typography*/  } from 'antd'
+import { Button/* , Typography*/, Select, Form } from 'antd'
 import { convertToRaw, Editor, EditorState, RawDraftContentState } from 'draft-js'
 // import { savePostsInfoApi } from '@/api/board'
+const Option = Select
 
 const buttonBoxStyle:InlintStyleType = {
     marginTop: '10px'
-}
-const InputStyle:InlintStyleType = {
-    border: '1px solid',
-    float: 'left',
-    width: '200px',
-    marginRight: '15px'
-}
-
-const SelectStyle:InlintStyleType = {
-    marginRight: '15px'
 }
 
 const EditorIndex = function() {
     const refTextrea:ForwardedRef<Editor> = useRef(null)
     // const refTextrea:any = useRef()
-    const refInput:any = useRef()
     const boardInfoData:BoardInfoType[] = useSelector((state:{boardInfo: BoardInfoType[]}) => {
         // debugger
         // console.log(state.boardInfo)
@@ -41,7 +31,7 @@ const EditorIndex = function() {
     const clickButton = function() {
         const savePostsParam:PostsDataType = {
             boardId: Number.parseInt(board),
-            postsTitle: refInput.current.value,
+            postsTitle: 'test标题',
             // postsContent: refTextrea.current.value,
             postsAuthId: userInfoData.userId,
             postsAuthName: userInfoData.netName,
@@ -91,16 +81,49 @@ const EditorIndex = function() {
     return (
     <React.Fragment>
         <MyEditor ref={refTextrea}></MyEditor>
-        <div style={buttonBoxStyle}>
-            <Input ref={ refInput } placeholder="输入您创作的标题" name="title" style={InputStyle}></Input>
-            <select style={SelectStyle} value={board} onChange={(event) => {setBoard(event.target.value)}}>
-                <option value="0">请选择发布板块</option>
+        
+        {/* <div style={buttonBoxStyle}>
+            <Select
+                showSearch
+                style={{ width: 200 }}
+                placeholder="请选择发布的模块"
+                onChange={(value:string) => {setBoard(value)}}
+            >
                 {
-                    Object.values(boardInfoData).map((val) =>  <option key={val.boardId} value={val.boardId}>{val.boardName}</option>)
+                    Object.values(boardInfoData).map((val) =>  <Option key={val.boardId} value={val.boardId}>{val.boardName}</Option>)
                 }
-            </select>
-            <Button onClick={clickButton}>发布</Button>
+            </Select>
         </div>
+            <Button onClick={clickButton}>发布</Button> */}
+             <Form
+                 style={{marginLeft: '15px'}}
+                 name="basic"
+                 wrapperCol={{ span: 16 }}
+                 initialValues={{ remember: true }}
+                 autoComplete="off"
+                >
+                <Form.Item
+                    label="请选择一个标题"
+                    name="username"
+                    rules={[{ required: true, message: '请选择一个标题' }]}>
+                    <Select
+                        showSearch
+                        style={{ width: 200 }}
+                        placeholder="请选择发布的模块"
+                        onChange={(value:string) => {setBoard(value)}}>
+                        {
+                            Object.values(boardInfoData).map((val) =>  <Option key={val.boardId} value={val.boardId}>{val.boardName}</Option>)
+                        }
+                    </Select>
+                </Form.Item>
+
+                <Form.Item wrapperCol={{ span: 16 }}>
+                    <Button type="primary" onClick={clickButton} htmlType="submit">发布</Button>
+                    {/* <Button type="primary" htmlType="submit">
+                    Submit
+                    </Button> */}
+                </Form.Item>
+            </Form>
     </React.Fragment>)
 }
 
