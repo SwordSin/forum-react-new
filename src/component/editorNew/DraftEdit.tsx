@@ -1,5 +1,5 @@
 import {Editor, EditorState, ContentState,  AtomicBlockUtils} from 'draft-js'
-import React, { useState, ForwardedRef, useRef, LegacyRef } from 'react'
+import { useState, useRef, LegacyRef } from 'react'
 import { Input } from'antd'
 import { BoldOutlined, LinkOutlined, PictureOutlined, BgColorsOutlined, CaretDownOutlined, FontSizeOutlined } from '@ant-design/icons'
 const EditorStyle = require('./editor.module.scss')
@@ -12,7 +12,7 @@ const focusTest = () => {
 
   
 
-const EditorTest = (props: { name?: string }) => {
+const EditorTest = () => {
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
     const [showModal, setShowModal] = useState(0)
     const myRef:LegacyRef<Editor> = useRef(null)
@@ -43,8 +43,8 @@ const EditorTest = (props: { name?: string }) => {
             'IMMUTABLE',
             {
                 src: url,
-                width: '200px',
-                height: '200px'
+                width: 200,
+                height: 200
             }
         )
         const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
@@ -58,7 +58,7 @@ const EditorTest = (props: { name?: string }) => {
             entityKey,
             ' '
         )
-        // g
+        // 设置富文本编辑的焦点
         if (myRef.current) {
             myRef.current.focus()
         }
@@ -66,9 +66,6 @@ const EditorTest = (props: { name?: string }) => {
         console.log(editorState.getCurrentContent())
         return url
     }
-    // useEffect(() => {
-    //     // 给编辑器添加焦点
-    // }, [])
     return (
         <div>
             <div style={{clear: 'both', height: '35px', paddingLeft: '5px', marginTop: '10px'}}>
@@ -105,7 +102,7 @@ const EditorTest = (props: { name?: string }) => {
             <div className='editor' style={{
                 margin: 15,
                 backgroundColor: 'white',
-                height: 400,
+                minHeight: 400,
                 overflowY: 'auto',
                 clear: 'both'
             }}>

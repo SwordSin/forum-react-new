@@ -22,7 +22,9 @@ const UploadModel = function(props:UploadModelType) {
     
         // closeImageUpload
         const closeImageUpload = () => {
-            props.getImgUrl(url)
+            if(url !== '') {
+                props.getImgUrl(url)
+            }
             setIsModalVisible(false)
         }
 

@@ -11,6 +11,7 @@ import { Route, useRouteMatch, useLocation  } from 'react-router-dom'
 import HotList from '@/view/hotList/HotList'
 
 import EditorIndex from '@/view/editor/index'
+import EditorTips from '@/view/editor/EditorTips'
 import React from 'react'
 
 const marginTop:InlintStyleType = {
@@ -47,9 +48,20 @@ const titleContentStyle: InlintStyleType = {
 }
 
 const editorContentStyle: InlintStyleType = {
-    flex: '1 80%',
+    flex: '1 65%',
+    paddingLeft: '0px',
+    // width: '60%',
+    // margin: 'auto',
+    marginTop: '20px'
+    
+}
+
+const editorTipsContentStyle = {
+    flex: '1 25%',
+    marginLeft: '2%',
+    paddingLeft: '20px',
     marginTop: '20px',
-    paddingLeft: '0px'
+    height: '400px'
 }
 
 const Content = function() {
@@ -61,7 +73,10 @@ const Content = function() {
                 <Card component={Tablist} style={tablistStyle}></Card>
                 {
                     loaction.pathname === '/content/editor'
-                    ? <Route path={math.url + '/editor'} render={() => <Card component={EditorIndex} style={editorContentStyle}></Card>} exact></Route>
+                    ? <React.Fragment>
+                        <Route path={math.url + '/editor'} render={() => <Card component={EditorIndex} style={editorContentStyle}></Card>} exact></Route>
+                        <Route path={math.url + '/editor'} render={() => <Card component={EditorTips} style={editorTipsContentStyle}></Card>} exact></Route>
+                    </React.Fragment>
                     : <React.Fragment>
                         <Route path={math.url + '/:titleType'} exact>
                             <Card component={Titlelist} style={titlelistStyle}></Card>
