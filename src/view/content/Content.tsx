@@ -12,7 +12,9 @@ import HotList from '@/view/hotList/HotList'
 
 import EditorIndex from '@/view/editor/index'
 import EditorTips from '@/view/editor/EditorTips'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { notification } from 'antd'
+
 
 const marginTop:InlintStyleType = {
     marginTop: '25px'
@@ -64,9 +66,26 @@ const editorTipsContentStyle = {
     height: '400px'
 }
 
+
 const Content = function() {
     const math = useRouteMatch()
     const loaction = useLocation()
+    // 假设2分钟提供一次世界消息业务
+    // const openNotification = (placement:any) => {
+    //     notification.info({
+    //       message: `Notification ${placement}`,
+    //       description:
+    //         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+    //       placement
+    //     })
+    //   }
+    // useEffect(() => {
+    //     setInterval(() => {
+    //         console.log('弹出弹窗')
+    //         openNotification('bottomLeft')
+    //     }, 3000)
+    // }, [])
+
     return (
         <div className={ContentStyle.content}>
             <div>
@@ -89,7 +108,6 @@ const Content = function() {
                         </Route>
                         <Route path={math.url + '/:titleType' +  '/:titleId'} exact render={() => <Card component={TitleContent} style={titleContentStyle}></Card>} />
                     </React.Fragment>
-                        
                 }
             </div>
         </div>

@@ -22,11 +22,11 @@ const FromStyle:InlintStyleType = {
 
 const registerClick = function(value:RegisterDataType) {
   registerUser(value).then(resp => {
-    if (Number.parseInt(resp.data.status) === 1) {
+    if (resp.status === 1) {
       alert('注册成功, 点击确定返回进入登录页面')
       location.href = '/login'
     } else {
-      alert(resp.data.data)
+      alert(resp.data)
     }
     console.log(resp)
   })

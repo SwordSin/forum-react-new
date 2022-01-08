@@ -21,9 +21,7 @@ const Titlelist = function() {
     const [postData, setPostData] = useState<PostsDataType[]>([])
     useEffect(() => {
         getPostsPageInfoApi(getTitleListData).then((resp:any) => {
-            // postData = resp.data.data.data
-            // console.log(resp.data.data.data)
-            setPostData(resp.data.data.data)
+            setPostData(resp.data)
         })
     }, [getTitleListData])
 

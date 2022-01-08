@@ -28,7 +28,8 @@ const Login = () => {
       values.rememberMe = false
     }
     login(values).then(resp => {
-      if(resp.data.status === 1) {
+      // console.log(resp)
+      if(resp.status === 1) {
         location.href = '/'
       } else {
         alert("发生登录错误")

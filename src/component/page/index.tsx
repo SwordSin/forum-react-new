@@ -1,6 +1,11 @@
-import { TitleListPageType } from '@/typings/shims'
+import { InlintStyleType, TitleListPageType } from '@/typings/shims'
 import { useDispatch, useSelector } from 'react-redux'
 import { Pagination  } from 'antd'
+
+const pageStyle:InlintStyleType = {
+    position: 'relative',
+    top: '4px'
+}
 
 const Page = function() {
     const pageData = useSelector((state:{titleList: TitleListPageType}) => {
@@ -28,7 +33,7 @@ const Page = function() {
 
     return (
         // style={{marginTop: '20px'}} 
-        <Pagination showQuickJumper defaultCurrent={2} total={500} onChange={jumpPage} />
+        <Pagination style={pageStyle} showQuickJumper defaultCurrent={2} total={500} onChange={jumpPage} />
     )
 }
 

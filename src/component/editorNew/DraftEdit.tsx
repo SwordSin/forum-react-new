@@ -1,19 +1,27 @@
-import {Editor, EditorState, ContentState,  AtomicBlockUtils} from 'draft-js'
-import { useState, useRef, LegacyRef } from 'react'
+import {Editor, EditorState, ContentState,  AtomicBlockUtils, RichUtils } from 'draft-js'
+import React, { useState, useRef, LegacyRef } from 'react'
 import { Input } from'antd'
-import { BoldOutlined, LinkOutlined, PictureOutlined, BgColorsOutlined, CaretDownOutlined, FontSizeOutlined } from '@ant-design/icons'
+import * as Icon from '@ant-design/icons'
 const EditorStyle = require('./editor.module.scss')
 import UploadModel from '@/component/uploadModel/UploadModel'
 import Media from './Media'
+import { inlineTypes, inlineTypeEditor } from './editorConfigs'
 
 const focusTest = () => {
     console.log('获取焦点')
 }
 
 const EditorTest = () => {
+    // 共同方法
     const [editorState, setEditorState] = useState(EditorState.createEmpty())
     const [showModal, setShowModal] = useState(0)
     const myRef:LegacyRef<Editor> = useRef(null)
+    // 设置文本的焦点
+    const setFocus = () => {
+        if (myRef.current) {
+            myRef.current.focus()
+        }
+    }
     
     // 上传图片
     const uploadImage = () => {
@@ -57,38 +65,60 @@ const EditorTest = () => {
             ' '
         )
         // 设置富文本编辑的焦点
-        if (myRef.current) {
-            myRef.current.focus()
-        }
+        setFocus()
         setEditorState(newNewEditorState)
         console.log(editorState.getCurrentContent())
         return url
     }
+
+    // 设置行内样式
+    const changeInlineStyle = (e:any, type:string, inline:boolean) => {
+        e.preventDefault()
+        console.log(type)
+        let editor:EditorState
+        if (inline) {
+            editor = RichUtils.toggleInlineStyle(
+                editorState,
+                type
+            )
+        } else {
+            editor = RichUtils.toggleBlockType(
+                editorState,
+                type
+            )   
+        }
+        // 设置富文本编辑的焦点
+        setFocus()
+        setEditorState(editor)
+    }
+
     return (
         <div>
             <div style={{clear: 'both', height: '35px', paddingLeft: '5px', marginTop: '10px'}}>
-                <div className={EditorStyle.fontPic}>
-                    {/* 加粗 */}
-                    <BoldOutlined />
-                    加粗
-                </div>
-                <div className={EditorStyle.fontPic}>
-                    <LinkOutlined />
-                    链接
-                </div>
-                <div className={EditorStyle.fontPic}>
-                    <FontSizeOutlined />
-                    标题
-                </div>
+                {/* 行内样式 */}
+                {
+                    inlineTypes.map((val:inlineTypeEditor, index:number) => {
+                        const TmpName = Icon[val.jsxName]
+                        // React.lazy(() => {
+
+                        // })
+                        return (
+                            <div key={index.toString()} className={EditorStyle.fontPic} onMouseDown={(e:any) => changeInlineStyle(e, val.type, val.inline)}>
+                                <TmpName />
+                                {val.label}
+                            </div>        
+                        )
+                    })  
+                }
                 <div className={EditorStyle.fontPic} onClick={uploadImage}>
-                    <PictureOutlined />
+                    <Icon.PictureOutlined />
                     插入图片
                     {/* <CaretDownOutlined style={{fontSize: '12px', display: 'inline'}} /> */}
                 </div>
                 <div className={EditorStyle.fontPic}>
-                    <BgColorsOutlined />
+                    <Icon.BgColorsOutlined />
                     字体颜色
-                    <CaretDownOutlined style={{fontSize: '12px', display: 'inline'}} />
+                    <Icon.CaretDownOutlined style={{fontSize: '12px', display: 'inline'}} />
                 </div>
             </div>
             {/* 标题 */}

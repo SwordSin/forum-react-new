@@ -18,16 +18,16 @@ import {
 export function registerUser(data:RegisterDataType) {
   decryptPassword(data)
   return request({
-    url: '/userInfo/registerInfo',
+    url: '/register-info/registerInfo',
     method: 'post',
     data: data
   })
 }
 
 export function login(data:LoginDataType) {
-  decryptPassword(data)
+  // decryptPassword(data)
   return request({
-    url: '/userInfo/login',
+    url: '/register-info/login',
     method: 'post',
     data: data
   })
@@ -35,7 +35,7 @@ export function login(data:LoginDataType) {
 
 export function getAccountOneKey(resultKey: string, queryKey: string, queryValue:string) {
   return request({
-    url: '/userInfo/getOneAccountKey',
+    url: '/register-info/getOneAccountKey',
     method: 'get',
     params: {
       queryKey: queryKey,

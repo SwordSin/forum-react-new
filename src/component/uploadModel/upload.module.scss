@@ -1,0 +1,16 @@
+.uploadStyle {
+    width: 128px;
+    height: 128px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    text-align: center;
+    vertical-align: top;
+    background-color: #fafafa;
+    border: 1px dashed #d9d9d9;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: border-color .3s;
+}
+.uploadStyle:hover {
+    border: 1px dashed #1890ff;
+}

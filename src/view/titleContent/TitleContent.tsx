@@ -12,8 +12,7 @@ const TitleContent = function() {
         // debugger
         if (postData === undefined) {
             getPostsPageInfoOneApi(Number(postsId)).then(resp => {
-                console.log(resp.data)
-                setPostData(resp.data.data)
+                setPostData(resp.data)
             })
         }
     })

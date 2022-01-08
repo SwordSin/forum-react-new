@@ -72,10 +72,10 @@ const EditorIndex = function() {
         // }
         // if(tmp) {
         //     savePostsInfoApi(savePostsParam).then(resp => {
-        //         if(resp.data.status === 1) {
+        //         if(resp.status === 1) {
         //             alert('保存帖子成功')
         //         } else {
-        //             alert(resp.data.data)
+        //             alert(resp.data)
         //         }
         //     })
         // } 
